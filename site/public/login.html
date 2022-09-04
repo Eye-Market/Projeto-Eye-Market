@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/login_style.css">
     <link rel="icon" href="resources/img/LogoEyeMarketFundoBranco.jpg">
+    <script src="./js/funcoes.js"></script>
+
     <title>Eye Market | Entre ou cadastre-se</title>
 </head>
+
 <body>
     <div class="container">
         <div class="leftSide">
@@ -22,27 +26,124 @@
                         <div class="title">Login</div>
                         <form action="" method="get">
                             <div class="form__group field">
-                                <input required="" placeholder="E-mail" class="form__field" type="email">
+                                <input id="email_input" required="" placeholder="E-mail" class="form__field" type="email">
                                 <label class="form__label" for="name">E-mail:</label>
                             </div>
                             <div class="form__group field">
-                                <input required="" placeholder="Senha" class="form__field" type="password">
+                                <input id="senha_input" required="" placeholder="Senha" class="form__field" type="password">
                                 <label class="form__label" for="name">Senha:</label>
                             </div>
                             <div class="form__group field btn">
-                                <button type="submit">Entrar</button>
+                                <button onclick="entrar()" type="submit">Entrar</button>
                             </div>
-                            
+
                         </form>
-                        <a href="cadastro.html"><p class="newC">Criar conta</p></a>
+                        <a href="cadastro.html">
+                            <p class="newC">Criar conta</p>
+                        </a>
                     </section>
                 </div>
             </div>
-            
+
         </div>
         <div class="rightSide">
-            
+
         </div>
     </div>
 </body>
+
 </html>
+
+<script>
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+
+        // Validações: 
+        // Campos vazios
+        if (emailVar == "" || senhaVar == "") {
+            alert("Preencha todos os campos para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar.length < 8) {
+            alert("Senha deve conter no mínimo 8 caracteres");
+            finalizarAguardar();
+            return false;
+        }
+     
+
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        
+    }
+</script>

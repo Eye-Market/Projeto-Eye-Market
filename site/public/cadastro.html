@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/cadastro_style.css">
     <link rel="icon" href="resources/img/LogoEyeMarketFundoBranco.jpg">
+    <script src="./js/funcoes.js"></script>
     <title>Eye Market | Entre ou cadastre-se</title>
 </head>
 <body>
@@ -26,42 +27,30 @@
                     <form action="" method="get">
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="Nome" class="form__field" type="text">
+                                <input id="nomeEmpresa_input" required="" placeholder="Nome" class="form__field" type="text">
                                 <label class="form__label" for="name">Nome:</label>
                             </div>
                             <div class="form__group field">
-                                <input required="" placeholder="CNPJ" class="form__field" type="number">
+                                <input id="cnpj_input" required="" placeholder="CNPJ" class="form__field" type="number">
                                 <label class="form__label" for="name">CNPJ</label>
                             </div>
                         </div>
 
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="CEP" class="form__field cep" type="number">
+                                <input id="cepEmpresa_input" required="" placeholder="CEP" class="form__field cep" type="number">
                                 <label class="form__label" for="name">CEP</label>
                             </div>
                         </div>
                         
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="Estado" class="form__field" type="text">
-                                <label class="form__label" for="name">Estado</label>
-                            </div>
-
-                            <div class="form__group field">
-                                <input required="" placeholder="Cidade" class="form__field" type="text">
-                                <label class="form__label" for="name">Cidade</label>
-                            </div>
-                        </div>
-
-                        <div class="lines">
-                            <div class="form__group field">
-                                <input required="" placeholder="Rua" class="form__field" type="text">
+                                <input id="ruaEmpresa_input" required="" placeholder="Rua" class="form__field" type="text">
                                 <label class="form__label" for="name">Rua</label>
                             </div>
 
                             <div class="form__group field">
-                                <input required="" placeholder="Numero" class="form__field" type="number">
+                                <input id="numeroEmpresa_input" required="" placeholder="Numero" class="form__field" type="number">
                                 <label class="form__label" for="name">Numero</label>
                             </div>
                         </div>
@@ -73,36 +62,36 @@
 
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="Nome" class="form__field" type="text">
+                                <input id="nome_input" required="" placeholder="Nome" class="form__field" type="text">
                                 <label class="form__label" for="name">Nome:</label>
                             </div>
                             <div class="form__group field">
-                                <input required="" placeholder="Telefone" class="form__field" type="number">
+                                <input id="telefone_input" required="" placeholder="Telefone" class="form__field" type="number">
                                 <label class="form__label" for="name">Telefone</label>
                             </div>
                         </div>
 
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="Email" class="form__field cep" type="email">
+                                <input id="email_input" required="" placeholder="Email" class="form__field cep" type="email">
                                 <label class="form__label" for="name">Email</label>
                             </div>
                         </div>
                         
                         <div class="lines">
                             <div class="form__group field">
-                                <input required="" placeholder="Senha" class="form__field" type="password">
+                                <input id="senha_input" required="" placeholder="Senha" class="form__field" type="password">
                                 <label class="form__label" for="name">Senha</label>
                             </div>
 
                             <div class="form__group field">
-                                <input required="" placeholder="Senha" class="form__field" type="password">
+                                <input id="confirmacao_senha_input" required="" placeholder="Senha" class="form__field" type="password">
                                 <label class="form__label" for="name">Repita a senha</label>
                             </div>
                         </div>
 
                         <div class="form__group field btn">
-                            <button type="submit">Cadastrar</button>
+                            <button onclick="cadastrar()" type="submit">Cadastrar</button>
                         </div>
                     </form>
                 </section>
@@ -113,3 +102,173 @@
     
 </body>
 </html>
+
+<script>
+    function cadastrar() {
+    aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var telefoneVar = telefone_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+
+    // Validações:
+    // Campos vazios
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        cardErro.style.display = "block"
+        alert("Preencha todos os campos para prosseguir!");
+
+        finalizarAguardar();
+        return false;
+    }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    // Nome numérico
+    var nome = Number(nomeVar);
+
+    if (!isNaN(nome)) {
+        cardErro.style.display = "block"
+        alert("Nome não pode ser numérico, digite seu nome novamente");
+
+        finalizarAguardar();
+        return false;
+    }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    if (senhaVar.length < 8) {
+        cardErro.style.display = "block"
+        alert("Senha deve conter no mínimo 8 caracteres");
+        finalizarAguardar();
+        return false;
+    }
+    
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    // Email com @ e .com
+    if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+        cardErro.style.display = "block"
+        alert("Ops, e-mail inválido! Verifique e tente novamente.");
+        finalizarAguardar();
+        return false;
+    }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    // Campo confirmacaoSenha igual ao de senha
+    if (senhaVar != confirmacaoSenhaVar) {
+        cardErro.style.display = "block"
+        alert("As senhas inseridas devem ser iguais para prosseguir!");
+        finalizarAguardar();
+        return false;
+    }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            telefoneServer: telefoneVar
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+            setTimeout(() => {
+                window.location = "login.html";
+            }, "2000")
+
+            limparFormulario();
+            finalizarAguardar();
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+    });
+
+    cadastrar_empresa();
+    return false;
+}
+
+//cadastrar_empresa
+function cadastrar_empresa(){
+
+    var cnpjVar = cnpj_input.value;
+    var nomeEmpresaVar = nomeEmpresa_input.value;
+    var cepEmpresaVar = cepEmpresa_input.value;
+    var ruaEmpresaVar = ruaEmpresa_input.value;
+    var numeroEmpresaVar = numeroEmpresa_input.value;
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar_empresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            cnpjServer: cnpjVar,
+            nomeEmpresaServer: nomeEmpresaVar,
+            cepEmpresaServer: cepEmpresaVar,
+            ruaEmpresaServer: ruaEmpresaVar,
+            numeroEmpresaServer: numeroEmpresaVar
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            cardErro.style.display = "block"
+
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+            setTimeout(() => {
+                window.location = "login.html";
+            }, "2000")
+
+            limparFormulario();
+            finalizarAguardar();
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+    });
+
+    return false;
+}
+
+function sumirMensagem() {
+    
+}
+</script>
