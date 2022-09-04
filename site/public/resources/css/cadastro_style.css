@@ -1,0 +1,212 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    /* background: orange;        color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #c9c9c9;
+    /* border-radius: 20px;   /* creates padding around scroll thumb */
+  }
+
+.container{
+    width: 900px;
+    display: flex;
+    box-shadow: 0px 0px 6px #707070;
+    background-color: white;
+    margin-top: 300px;
+}
+
+.container .leftSide{
+    width: 90%;
+    padding: 40px;
+}
+
+.container .rightSide{
+    width: 10%;
+    background-color:#441f44;
+}
+
+.container .header{
+    width: 300px;
+    color: #441f44;
+}
+
+.header .tx1{
+    font-size: 30px;
+}
+
+.header .tx2{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.divs{
+    font-size: 18px;
+    color: #441f44;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+
+.form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: calc(0.3em + 1vw);
+    cursor: text;
+    top: 20px;
+  }
+
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: calc(0.3em + 1vw);
+    color: #9b9b9b;
+    pointer-events: none;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    border-width: 2px;
+    border-image: linear-gradient(to right, #69486c, #b08bb2);
+    border-image-slice: 1;
+  }
+  
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: calc(0.3em + 1vw);
+    color: #441f44;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+
+  #elementos-formulario form p{
+    font-size: calc(0.3em + 1vw);
+    font-weight: 500;
+    color: #9e7aa1;
+ }
+
+ #elementos-formulario{
+  width: 90%;
+  height: 80%;
+  background-color: white;
+  display: flex;
+ }
+
+ #elementos-formulario form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+ }
+
+
+/* From uiverse.io by @mrhyddenn */
+.form__group {
+    position: relative;
+    padding: 20px 0 2%;
+    margin-top: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #9b9b9b;
+    outline: 0;
+    font-size: 17px;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+
+  .lines{
+    display: flex;
+  }
+
+  .cep{
+    width: 95%;
+  }
+
+  .ld{
+    margin-bottom: 20px;
+  }
+
+
+  button {
+    color: white;
+    margin: 2% 0 0;
+    width: 200px;
+    padding: 0.3em 0;
+    border-radius: 0.5em;
+    background: #441f44;
+    border: 1px solid #9e7aa1;
+    transition: all .3s;
+    box-shadow: 2px 2px 6px #b5b4b4,
+                -6px -6px 12px #ffffff;
+    font-size: calc(0.3em + 1vw);
+   }
+   
+   button:hover {
+    background-color: white;
+    border: 1px solid #441f44;
+    cursor: pointer;
+    color: #441f44;
+   }
+   
+   button:active {
+    box-shadow: 4px 4px 12px #c5c5c5,
+                -4px -4px 12px #ffffff;
+   }
+
+   #elementos-formulario form .btn{
+    display: flex;
+   }

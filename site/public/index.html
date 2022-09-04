@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="resources/img/LogoEyeMarketBranco.png">
+    <link rel="icon" href="resources/img/LogoEyeMarketFundoBranco.jpg">
     <link rel="stylesheet" href="resources/css/index_style.css">
     <title>Eye Market</title>
 </head>
@@ -16,16 +16,16 @@
         <div class="menu">
             <nav>
                 <ul>
-                    <li>Home</li>
-                    <li>Sobre nós</li>
-                    <li>Mercado</li>
-                    <li>Contato</li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#totem">Totens</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
         </div>
         <div class="acesso">
-            <div class="login">Login</div>
-            <div class="cadastro">Cadastro</div>
+            <div class="login" onclick="irLogin()">Login</div>
+            <div class="cadastro" onclick="irCadastro()">Cadastro</div>
         </div>
 
         <div class="hamb">
@@ -37,132 +37,199 @@
         </div>
     </header>
 
-    <div class="home">
+    <div id="home" class="home">
         <div class="leftSide">
             <div class="tx1">
-                Cresça seu mercado
-                pipipi popopo
+                Melhore o ambiente do seu mercado
             </div>
             <div class="tx2">
-                Combine tants com plant
-                e futere jus tocos
+                Monitore os Totens do seu mercado e aumente a qualidade de atendimento de seus clientes
             </div>
-            <button>Clique aqui para dusar de bui</button>
+            <button>Clique aqui para acessar a plataforma</button>
         </div>
         <div class="rightSide">
             <img src="resources/img/Cartoon.png" alt="">
         </div>
     </div>
 
-    <div class="sobre">
-        <div class="tx1">Somos dom por te aris drugui dan</div>
-        <div class="tx2">Locomevmos duris dron fugi thurques de nurva ter, pivcamos de salute dos fluti gron de cares e
-            tusq glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo </div>
+    <div id="sobre" class="sobre">
+        <div class="tx1">Somos uma empresa de tecnologia</div>
+        <div class="tx2">Buscamos entregar as melhores soluções para nossos usuários, e a Eye Market é um dos projetos que foi o resultado dessa vontade
+            de nos tornarmos referência no mercado tecnológico, trazendo serviços e atender as necessidades do nosso país.
+        </div>
 
 
         <div class="membros">
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/beatriz.jpg" alt="">
+            <a href="https://github.com/BeatrizFrancaGusmaoo">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/beatriz.jpg" alt="">
+                        </div>
+                    </div>
+    
+                    <div class="info">
+                        <div class="nome">Beatriz Gusmão</div>
+                        <div class="desc">Developer at Accenture</div>
+                        <div class="frase">"Minha vida é regida por amar, ressignificar e acreditar"
+                            <br>
+                            <br>
+                        </div>
+                        <div class="line"></div>
                     </div>
                 </div>
+            </a>
 
-                <div class="info">
-                    <div class="nome">Beatriz Gusmão</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
+            <a href="https://github.com/obrennogomes">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/Brenno.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="line"></div>
+    
+                    <div class="info">
+                        <div class="nome">Brenno Gomes</div>
+                        <div class="desc">Developer at Accenture</div>
+                        <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
+                        </div>
+                        <div class="line"></div>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/Brenno.jpg" alt="">
+            <a href="https://github.com/Gdmasceno">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/Gabriel.jpg" alt="">
+                        </div>
+                    </div>
+    
+                    <div class="info">
+                        <div class="nome">Gabriel Damasceno</div>
+                        <div class="desc">Developer at Accenture</div>
+                        <div class="frase">"Seja resiliente, acredite na sua força, no seu potencial, creia que é capaz e você será!"
+                        </div>
+                        <div class="line"></div>
                     </div>
                 </div>
+            </a>
 
-                <div class="info">
-                    <div class="nome">Brenno Gomes</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
+            <a href="https://github.com/dudaaprado">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/Eduarda.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="line"></div>
+    
+                    <div class="info">
+                        <div class="nome">Maria Eduarda Orfali</div>
+                        <div class="desc">Developer at Delloite</div>
+                        <div class="frase">"O dia que você planta a semente não é o dia que você colhe o fruto, aguarde e terá os resultados"
+                        </div>
+                        <div class="line"></div>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/Gabriel.jpg" alt="">
+            <a href="https://github.com/Mario5ergio">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/Mario.jpg" alt="">
+                        </div>
+                    </div>
+    
+                    <div class="info">
+                        <div class="nome">Mário Sérgio</div>
+                        <div class="desc">Developer at Safra</div>
+                        <div class="frase">"No fim tudo da certo, e se não deu certo é porque ainda não chegou ao fim"
+                        </div>
+                        <div class="line"></div>
                     </div>
                 </div>
+            </a>
 
-                <div class="info">
-                    <div class="nome">Gabriel Damasceno</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
+            <a href="https://github.com/Tamirez">
+                <div class="membro">
+                    <div class="picture">
+                        <div class="foto">
+                            <img src="resources/img/Tamirez.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="line"></div>
-                </div>
-            </div>
-
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/Eduarda.jpg" alt="">
-                    </div>
-                </div>
-
-                <div class="info">
-                    <div class="nome">Maria Eduarda Orfali</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
-                    </div>
-                    <div class="line"></div>
-                </div>
-            </div>
-
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/Mario.jpg" alt="">
+    
+                    <div class="info">
+                        <div class="nome">Tamirez Sousa</div>
+                        <div class="desc">Developer at Delloite</div>
+                        <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
+                        </div>
+                        <div class="line"></div>
                     </div>
                 </div>
-
-                <div class="info">
-                    <div class="nome">Mário Sérgio</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
-                    </div>
-                    <div class="line"></div>
-                </div>
-            </div>
-
-            <div class="membro">
-                <div class="picture">
-                    <div class="foto">
-                        <img src="resources/img/Tamirez.jpg" alt="">
-                    </div>
-                </div>
-
-                <div class="info">
-                    <div class="nome">Tamirez Sousa</div>
-                    <div class="desc">Deveras crui se dan</div>
-                    <div class="frase">"glode fru giu dos granteduyr gret gfbhnr borne dthis dure core trandurivo "
-                    </div>
-                    <div class="line"></div>
-                </div>
-            </div>
+            </a>
         </div>
         <br>
         <br>
     </div>
 
 
+    <div id="totem" class="totem">
+        <div class="tx1">Autoatendimento e vantagens</div>
+        <div class="tx2">Os totens de autoatendimento nos supermercados são terminais autônomos destinados a executar tarefas tipicamente realizadas por humanos, mas de uma forma muito mais ágil, prática e econômica.
+        </div>
 
+        <div class="cards">
+            <div class="card">
+                <div class="icon">
+                    <img src="resources/img/hourglass.png" alt="">
+                </div>
+                <div class="txt_main">
+                    <div class="title">Economiza tempo</div>
+                    <div class="subt">Reduz a necessidade de recursos humanos</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon">
+                    <img src="resources/img/espaco.png" alt="">
+                </div>
+                <div class="txt_main">
+                    <div class="title">Otimiza o espaço</div>
+                    <div class="subt">Um totem demanda menos espaço do que um caixa convencional </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon">
+                    <img src="resources/img/funcionarios.png" alt="">
+                </div>
+                <div class="txt_main">
+                    <div class="title">Melhor alocação</div>
+                    <div class="subt">Funcionários melhores distribuídos em outros cargos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contato" class="contato">
+        <div class="container">
+            <div class="main">
+                <div class="title">Entre em contato</div>
+                <div class="subt">Mande uma mensagem para nosso time</div>
+
+                <div class="form">
+                    <input class="nome" type="text" placeholder="Digite seu nome...">
+                    <input class="email" type="text" placeholder="Digite seu email...">
+                    <input class="assunto" type="text" placeholder="Assunto">
+                    <textarea class="mensagem" placeholder="Mensagem"></textarea>
+                    <button>Enviar</button>
+                </div>
+            </div>
+            <div class="dvs"></div>
+        </div>
+    </div>
 
     <footer>
         <div class="startSide">
@@ -170,9 +237,40 @@
             <div class="tx1">Eye Market</div>
             <div class="tx2">Diregunde 20 86056 Market</div>
         </div>
-        <div class="middleSide"></div>
-        <div class="endSide"></div>
+        <div class="middleSide">
+            <div class="line">
+                <img src="resources/img/telephone-handle-silhouette.png" alt="">
+                (11) 9663-25595
+            </div>
+            <div class="line">
+                <img src="resources/img/telegram (1).png" alt="">
+                (11) 9663-25595
+            </div>
+            <div class="line">
+                <img src="resources/img/mail (1).png" alt="">
+                bgvgvhG@gmail.com
+            </div>
+            <div class="line">
+                <img src="resources/img/whatsapp (1).png" alt="">
+                (11) 9663-25595
+            </div>
+        </div>
+        <div class="endSide">
+            <a href="#home">Home</a>
+            <a href="#sobre">Sobre nós</a>
+            <a href="#totem">Totens</a>
+            <a href="#contato">Contato</a>
+        </div>
     </footer>
 </body>
 
+<script>
+    function irLogin() {
+        window.location = "login.html";
+    }
+
+    function irCadastro(){
+        window.location = "cadastro.html";
+    }
+</script>
 </html>
