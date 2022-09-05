@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../resources/css/index_restrita.css">
+    <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
+    <title>Eye Market |</title>
+</head>
+<body>
+    <div class="t1">Olá usuário!</div>
+    <div class="t2">Voce agora está conectado com o email:</div>
+    <div id="email"></div>
+    <button onclick="sair()">sair</button>
+</body>
+</html>
+
+<script>
+    email.innerHTML = sessionStorage.EMAIL_USUARIO;
+
+    function sair(){
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+</script>

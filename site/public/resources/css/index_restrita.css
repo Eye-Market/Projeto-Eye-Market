@@ -1,0 +1,39 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.t1{
+    font-size: 40px;
+    color: #441f44;
+}
+
+.t2{
+    font-size: 18px;
+    color: #441f44;
+}
+
+#email{
+    font-size: 20px;
+    color: #441f44;
+    font-weight: bold;
+}
+
+button{
+    width: 200px;
+    height: 40px;
+    background-color: #441f44;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+}

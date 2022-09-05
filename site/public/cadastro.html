@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +10,16 @@
     <script src="./js/funcoes.js"></script>
     <title>Eye Market | Entre ou cadastre-se</title>
 </head>
+
 <body>
 
     <div class="container">
         <div class="leftSide">
             <div class="header">
+                <div class="voltar">
+                    <img src="resources/img/botao-de-seta-para-a-esquerda-do-teclado.png" alt="">
+                    <a href="index.html">voltar</a>
+                </div>
                 <div class="tx1">Olá!</div>
                 <div class="tx2">Seja bem vindo</div>
             </div>
@@ -24,34 +30,45 @@
 
             <div class="form">
                 <section id="elementos-formulario">
-                    <form action="" method="get">
+                    <div class="formm">
                         <div class="lines">
                             <div class="form__group field">
-                                <input id="nomeEmpresa_input" required="" placeholder="Nome" class="form__field" type="text">
+                                <input id="nomeEmpresa_input" required="" placeholder="Nome" class="form__field"
+                                    type="text">
                                 <label class="form__label" for="name">Nome:</label>
+                                <div class="erro" id="erroNomeEmpresa">erro</div>
                             </div>
                             <div class="form__group field">
                                 <input id="cnpj_input" required="" placeholder="CNPJ" class="form__field" type="number">
                                 <label class="form__label" for="name">CNPJ</label>
+                                <div class="erro" id="erroCnpjEmpresa">erro</div>
+
                             </div>
                         </div>
 
                         <div class="lines">
                             <div class="form__group field">
-                                <input id="cepEmpresa_input" required="" placeholder="CEP" class="form__field cep" type="number">
+                                <input id="cepEmpresa_input" required="" placeholder="CEP" class="form__field cep"
+                                    type="number">
                                 <label class="form__label" for="name">CEP</label>
+                                <div class="erro" id="erroCepEmpresa">erro</div>
+
                             </div>
                         </div>
-                        
+
                         <div class="lines">
                             <div class="form__group field">
-                                <input id="ruaEmpresa_input" required="" placeholder="Rua" class="form__field" type="text">
+                                <input id="ruaEmpresa_input" required="" placeholder="Rua" class="form__field"
+                                    type="text">
                                 <label class="form__label" for="name">Rua</label>
+                                <div class="erro" id="erroRuaEmpresa">erro</div>
                             </div>
 
                             <div class="form__group field">
-                                <input id="numeroEmpresa_input" required="" placeholder="Numero" class="form__field" type="number">
+                                <input id="numeroEmpresa_input" required="" placeholder="Numero" class="form__field"
+                                    type="number">
                                 <label class="form__label" for="name">Numero</label>
+                                <div class="erro" id="erroNumeroEmpresa">erro</div>
                             </div>
                         </div>
 
@@ -64,213 +81,252 @@
                             <div class="form__group field">
                                 <input id="nome_input" required="" placeholder="Nome" class="form__field" type="text">
                                 <label class="form__label" for="name">Nome:</label>
+                                <div class="erro" id="erroNomeUsuario">erro</div>
                             </div>
                             <div class="form__group field">
-                                <input id="telefone_input" required="" placeholder="Telefone" class="form__field" type="number">
+                                <input id="telefone_input" required="" placeholder="Telefone" class="form__field"
+                                    type="number">
                                 <label class="form__label" for="name">Telefone</label>
                             </div>
                         </div>
 
                         <div class="lines">
                             <div class="form__group field">
-                                <input id="email_input" required="" placeholder="Email" class="form__field cep" type="email">
+                                <input id="email_input" required="" placeholder="Email" class="form__field cep"
+                                    type="text">
                                 <label class="form__label" for="name">Email</label>
+                                <div class="erro" id="erroEmailUsuario">erro</div>
                             </div>
                         </div>
-                        
+
                         <div class="lines">
                             <div class="form__group field">
-                                <input id="senha_input" required="" placeholder="Senha" class="form__field" type="password">
+                                <input id="senha_input" required="" placeholder="Senha" class="form__field"
+                                    type="password">
                                 <label class="form__label" for="name">Senha</label>
+                                <div class="erro" id="erroSenhaUsuario">erro</div>
                             </div>
 
                             <div class="form__group field">
-                                <input id="confirmacao_senha_input" required="" placeholder="Senha" class="form__field" type="password">
+                                <input id="confirmacao_senha_input" required="" placeholder="Senha" class="form__field"
+                                    type="password">
                                 <label class="form__label" for="name">Repita a senha</label>
+                                <div class="erro" id="erroSenhaTwoUsuario">erro</div>
                             </div>
                         </div>
 
                         <div class="form__group field btn">
-                            <button onclick="cadastrar()" type="submit">Cadastrar</button>
+                            <div class="group">
+                                <button onclick="cadastrar()" type="submit">Cadastrar</button>
+                            <div id="carregar">
+                                <img src="resources/img/carregando.gif" alt="">
+                            </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </section>
-            </div>
-            <div class="form__group field btn">
-                <button type="submit"><a  href="index.html">Voltar</a></button>
             </div>
         </div>
         <div class="rightSide"></div>
     </div>
-    
+
 </body>
+
 </html>
 
 <script>
     function cadastrar() {
-    
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var telefoneVar = telefone_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-
-
-    // Validações:
-    // Campos vazios
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-        
-        alert("Preencha todos os campos para prosseguir!");
-
-        
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
-    // Nome numérico
-    var nome = Number(nomeVar);
-
-    if (!isNaN(nome)) {
-        
-        alert("Nome não pode ser numérico, digite seu nome novamente");
-
-        
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
-    if (senhaVar.length < 4) {
-        
-        alert("Senha deve conter no mínimo 4 caracteres");
-        
-        return false;
-    }
-    
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
-    // Email com @ e .com
-    if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-        
-        alert("Ops, e-mail inválido! Verifique e tente novamente.");
-        
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
-    // Campo confirmacaoSenha igual ao de senha
-    if (senhaVar != confirmacaoSenhaVar) {
-        
-        alert("As senhas inseridas devem ser iguais para prosseguir!");
-        
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
+        aguardar();
+        //Limpando os erros
+        erroNomeUsuario.style.display = "none";
+        erroEmailUsuario.style.display = "none";
+        erroSenhaUsuario.style.display = "none";
+        erroSenhaTwoUsuario.style.display = "none";
+        erroRuaEmpresa.style.display = "none";
+        erroCnpjEmpresa.style.display = "none";
 
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar,
-            telefoneServer: telefoneVar,
-            
-        })
-    }).then(function (resposta) {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var telefoneVar = telefone_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var cnpjVar = cnpj_input.value;
+        var nomeEmpresaVar = nomeEmpresa_input.value;
+        var cepEmpresaVar = cepEmpresa_input.value;
+        var ruaEmpresaVar = ruaEmpresa_input.value;
+        var numeroEmpresaVar = numeroEmpresa_input.value;
 
-        console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
+        // Validações:
+        // Campos vazios
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
 
-            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+            alert("Preencha todos os campos para prosseguir!");
 
-            setTimeout(() => {
-                window.location = "login.html";
-            }, "5000")
-
-            limparFormulario();
-            
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
+            finalizarAguardar();
+            return false;
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        
-    });
-
-    cadastrar_empresa();
-    return false;
-}
-
-//cadastrar_empresa
-function cadastrar_empresa(){
-
-    var cnpjVar = cnpj_input.value;
-    var nomeEmpresaVar = nomeEmpresa_input.value;
-    var cepEmpresaVar = cepEmpresa_input.value;
-    var ruaEmpresaVar = ruaEmpresa_input.value;
-    var numeroEmpresaVar = numeroEmpresa_input.value;
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar_empresa", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            cnpjServer: cnpjVar,
-            nomeEmpresaServer: nomeEmpresaVar,
-            cepEmpresaServer: cepEmpresaVar,
-            ruaEmpresaServer: ruaEmpresaVar,
-            numeroEmpresaServer: numeroEmpresaVar
-        })
-    }).then(function (resposta) {
-
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-            
-            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-
-            setTimeout(() => {
-                window.location = "login.html";
-            }, "5000")
-
-            limparFormulario();
-            
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
+        else {
+            setInterval(sumirMensagem, 5000)
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        
-    });
 
-    return false;
-}
+        if (cnpjVar == "" || nomeEmpresaVar == "" || cepEmpresaVar == "" || ruaEmpresaVar == "" || numeroEmpresaVar == "") {
 
-function sumirMensagem() {
-    
-}
+            alert("Preencha todos os campos para prosseguir!");
+            finalizarAguardar();
+
+
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Nome numérico
+        var nome = Number(nomeVar);
+
+
+        if (cnpjVar.length < 14) {
+            finalizarAguardar();
+
+            erroCnpjEmpresa.innerHTML = "CNPJ inváldo";
+            erroCnpjEmpresa.style.display = "block";
+
+            return false;
+        }
+
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (!isNaN(ruaEmpresaVar)) {
+            finalizarAguardar();
+
+            // alert("Nome não pode ser numérico, digite seu nome novamente");
+            erroRuaEmpresa.innerHTML = "Rua inválida";
+            erroRuaEmpresa.style.display = "block";
+
+
+            return false;
+        }
+
+        // Nome numérico
+        var nome = Number(nomeVar);
+
+        if (!isNaN(nome)) {
+            finalizarAguardar();
+
+            // alert("Nome não pode ser numérico, digite seu nome novamente");
+            erroNomeUsuario.innerHTML = "Nome não pode ser numérico";
+            erroNomeUsuario.style.display = "block";
+
+
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar.length < 4) {
+            finalizarAguardar();
+
+            erroSenhaUsuario.innerHTML = "Senha deve conter no mínimo 4 caracteres";
+            erroSenhaUsuario.style.display = "block";
+
+            return false;
+        }
+
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Email com @ e .com
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            finalizarAguardar();
+
+            erroEmailUsuario.innerHTML = "E-mail inválido";
+            erroEmailUsuario.style.display = "block";
+
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Campo confirmacaoSenha igual ao de senha
+        if (senhaVar != confirmacaoSenhaVar) {
+            finalizarAguardar();
+
+            erroSenhaTwoUsuario.innerHTML = "As senhas não são iguais";
+            erroSenhaTwoUsuario.style.display = "block";
+
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                telefoneServer: telefoneVar,
+                cnpjServer: cnpjVar,
+                nomeEmpresaServer: nomeEmpresaVar,
+                cepEmpresaServer: cepEmpresaVar,
+                ruaEmpresaServer: ruaEmpresaVar,
+                numeroEmpresaServer: numeroEmpresaVar
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "5000")
+
+                limparFormulario();
+                finalizarAguardar();
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+                finalizarAguardar();
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
+        cadastrar_empresa();
+        return false;
+    }
+
+    function sumirMensagem() {
+
+    }
+
+    function aguardar(){
+        carregar.style.display = "block";
+    }
+
+    function finalizarAguardar(){
+        carregar.style.display = "none";
+    }
 </script>

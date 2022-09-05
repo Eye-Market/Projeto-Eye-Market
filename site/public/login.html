@@ -16,35 +16,43 @@
     <div class="container">
         <div class="leftSide">
             <div class="header">
+                <div class="voltar">
+                    <img src="resources/img/botao-de-seta-para-a-esquerda-do-teclado.png" alt="">
+                    <a href="index.html">voltar</a>
+                </div>
                 <div class="tx1">Olá!</div>
                 <div class="tx2">Bem vindo de volta</div>
             </div>
 
             <div class="main">
-                <div class="box">
+                <div class="box" id="box">
                     <section id="elementos-formulario">
                         <div class="title">Login</div>
-                        <form action="" method="get">
+                        <div class="formm">
                             <div class="form__group field">
                                 <input id="email_input" required="" placeholder="E-mail" class="form__field" type="email">
                                 <label class="form__label" for="name">E-mail:</label>
+                                <div id="erroEmail" class="erro">erro</div>
                             </div>
                             <div class="form__group field">
                                 <input id="senha_input" required="" placeholder="Senha" class="form__field" type="password">
                                 <label class="form__label" for="name">Senha:</label>
+                                <div class="erro" id="erroSenha">erro</div>
+                                
                             </div>
                             <div class="form__group field btn">
-                                <button onclick="entrar()" type="submit">Entrar</button>
-                            </div>
-                            <div class="form__group field btn">
-                                <button type="submit"><a  href="index.html">Voltar</a></button>
+                                <button onclick="entrar()">Entrar</button>
                             </div>
 
-                        </form>
+                        </div>
                         <a href="cadastro.html">
                             <p class="newC">Criar conta</p>
                         </a>
                     </section>
+                </div>
+
+                <div id="carregar">
+                    <img src="resources/img/carregando.gif" alt="">
                 </div>
             </div>
         </div>
@@ -59,6 +67,8 @@
 <script>
     function entrar() {
         aguardar();
+        erroEmail.style.display = "none";
+        erroSenha.style.display = "none";
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -67,6 +77,7 @@
         // Validações: 
         // Campos vazios
         if (emailVar == "" || senhaVar == "") {
+            finalizarAguardar();
             alert("Preencha todos os campos para prosseguir!");
             return false;
         }
@@ -75,7 +86,10 @@
         }
 
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            // alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            erroEmail.innerHTML = "Email inválido";
+            erroEmail.style.display = "block";
             return false;
         }
         else {
@@ -110,7 +124,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "test.html";
+                        window.location = "restrito/index_restrita.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -121,10 +135,12 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    finalizarAguardar();
                 });
 
-                alert("Houve um erro ao tentar realizar o login!")
+                // alert("Houve um erro ao tentar realizar o login!")
+                erroSenha.innerHTML = "Email ou senha incorreta";
+                erroSenha.style.display = "block";
             }
 
         }).catch(function (erro) {
@@ -136,5 +152,15 @@
 
     function sumirMensagem() {
         
+    }
+
+    function aguardar(){
+        box.style.display = "none";
+        carregar.style.display = "block";
+    }
+
+    function finalizarAguardar(){
+        box.style.display = "flex";
+        carregar.style.display = "none";
     }
 </script>

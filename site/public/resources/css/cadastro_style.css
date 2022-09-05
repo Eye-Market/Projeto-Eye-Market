@@ -56,6 +56,7 @@ body::-webkit-scrollbar {
 
 .header .tx1{
     font-size: 30px;
+    margin-top: 30px;
 }
 
 .header .tx2{
@@ -89,7 +90,7 @@ body::-webkit-scrollbar {
   }
   
   .form__field:placeholder-shown ~ .form__label {
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
     cursor: text;
     top: 20px;
   }
@@ -99,9 +100,13 @@ body::-webkit-scrollbar {
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
     color: #9b9b9b;
     pointer-events: none;
+  }
+
+  .form{
+    margin-top: 20px;
   }
   
   .form__field:focus {
@@ -185,6 +190,7 @@ body::-webkit-scrollbar {
     color: white;
     margin: 2% 0 0;
     width: 200px;
+    height: 40px;
     padding: 0.3em 0;
     border-radius: 0.5em;
     background: #441f44;
@@ -192,7 +198,7 @@ body::-webkit-scrollbar {
     transition: all .3s;
     box-shadow: 2px 2px 6px #b5b4b4,
                 -6px -6px 12px #ffffff;
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
    }
    
    button:hover {
@@ -208,5 +214,58 @@ body::-webkit-scrollbar {
    }
 
    #elementos-formulario form .btn{
+    display: flex;
+   }
+
+   .erro{
+    color: rgb(219, 3, 3);
+    display: none;
+   }
+
+   .formm{
+    width: 80%;
+    /* background-color: red; */
+   }
+
+   .voltar{
+    display: flex;
+    font-size: 20px;
+    /* background-color: blue; */
+    justify-content:left;
+    align-items: center;
+    cursor: pointer;
+   }
+
+   .voltar img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+   }
+
+   @media screen and (max-width: 900px) {
+    body{
+      padding: 0;
+    }
+
+    .container{
+      margin-top: 200px;
+    }
+
+    .formm{
+      width: 90%;
+    }
+   }
+
+
+   #carregar img{
+    width: 50px;
+    margin-left: 30px;
+   }
+
+   #carregar{
+    display: none;
+   }
+
+   .group{
     display: flex;
    }

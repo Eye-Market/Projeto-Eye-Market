@@ -60,7 +60,7 @@ PRIMARY KEY(idDadosTotem, fkTotem)
 
 /* para SQL Server - remoto - Produção */
 
-nosso DATABASE Azure aqui;
+/* nosso DATABASE Azure aqui; */
 
 -- CREATE DATABASE Azure acquatec;
 /*

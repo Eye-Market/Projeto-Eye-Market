@@ -28,7 +28,7 @@
             <div class="cadastro" onclick="irCadastro()">Cadastro</div>
         </div>
 
-        <div class="hamb">
+        <div onclick="abrirMenu()" class="hamb">
             <div class="main">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -36,6 +36,14 @@
             </div>
         </div>
     </header>
+
+    <div id="menurespo" class="menurespo">
+        <a href="#home"><div class="linha">Home</div></a>
+        <a href="#sobre"><div class="linha">Sobre nós</div></a>
+        <a href="#totem"><div class="linha">Totens</div></a>
+        <a href="#contato"><div class="linha">Contato</div></a>
+        <a href="login.html"><div class="linha"><b>Login</b></div></a>
+    </div>
 
     <div id="home" class="home">
         <div class="leftSide">
@@ -271,6 +279,18 @@
 
     function irCadastro(){
         window.location = "cadastro.html";
+    }
+
+    function abrirMenu(){
+
+        if(menurespo.style.display == "flex"){
+            menurespo.style.display = "none";
+        }
+
+        else{
+            menurespo.style.display ="flex";
+            menurespo.style.animation = "bounceTwo 0.2s linear";
+        }
     }
 </script>
 </html>

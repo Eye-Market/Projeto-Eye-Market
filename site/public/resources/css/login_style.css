@@ -34,7 +34,7 @@ body::-webkit-scrollbar-thumb {
 
 .container{
     width: 500px;
-    height: 500px;
+    height: 550px;
     display: flex;
     box-shadow: 0px 0px 6px #707070;
     background-color: white;
@@ -60,6 +60,7 @@ body::-webkit-scrollbar-thumb {
 
 .header .tx1{
     font-size: 30px;
+    margin-top: 40px;
 }
 
 .header .tx2{
@@ -79,7 +80,7 @@ body::-webkit-scrollbar-thumb {
     width: 250px;
     height: 300px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column
 }
 
 .box .title{
@@ -132,7 +133,7 @@ width: 350px;
   }
   
   .form__field:placeholder-shown ~ .form__label {
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
     cursor: text;
     top: 20px;
   }
@@ -142,7 +143,7 @@ width: 350px;
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
     color: #9b9b9b;
     pointer-events: none;
   }
@@ -215,7 +216,7 @@ width: 350px;
   button {
     color: white;
     margin: 2% 0 0;
-    width: 45%;
+    width: 110px;
     padding: 0.3em 0;
     border-radius: 0.5em;
     background: #441f44;
@@ -223,7 +224,7 @@ width: 350px;
     transition: all .3s;
     box-shadow: 2px 2px 6px #b5b4b4,
                 -6px -6px 12px #ffffff;
-    font-size: calc(0.3em + 1vw);
+    font-size: 18px;
    }
    
    button:hover {
@@ -247,4 +248,46 @@ width: 350px;
     color: #371535;
     font-weight: bold;
     cursor: pointer;
+   }
+
+   
+   .voltar{
+    display: flex;
+    font-size: 20px;
+    /* background-color: blue; */
+    justify-content:left;
+    align-items: center;
+    cursor: pointer;
+   }
+
+   .voltar img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+   }
+
+   .formm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   }
+
+   .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .erro{
+    color: rgb(214, 14, 14);
+    display: none;
+   }
+
+   #carregar img{
+    width: 100px;
+   }
+
+   #carregar{
+    display: none;
    }
