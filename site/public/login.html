@@ -36,6 +36,9 @@
                             <div class="form__group field btn">
                                 <button onclick="entrar()" type="submit">Entrar</button>
                             </div>
+                            <div class="form__group field btn">
+                                <button type="submit"><a  href="index.html">Voltar</a></button>
+                            </div>
 
                         </form>
                         <a href="cadastro.html">
@@ -44,7 +47,6 @@
                     </section>
                 </div>
             </div>
-
         </div>
         <div class="rightSide">
 
@@ -66,27 +68,14 @@
         // Campos vazios
         if (emailVar == "" || senhaVar == "") {
             alert("Preencha todos os campos para prosseguir!");
-            finalizarAguardar();
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (senhaVar.length < 8) {
-            alert("Senha deve conter no mínimo 8 caracteres");
-            finalizarAguardar();
-            return false;
-        }
-     
-
         else {
             setInterval(sumirMensagem, 5000)
         }
 
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
             alert("Ops, e-mail inválido! Verifique e tente novamente.");
-            finalizarAguardar();
             return false;
         }
         else {
@@ -121,7 +110,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./";
+                        window.location = "test.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -134,6 +123,8 @@
                     console.error(texto);
                     finalizarAguardar(texto);
                 });
+
+                alert("Houve um erro ao tentar realizar o login!")
             }
 
         }).catch(function (erro) {

@@ -96,6 +96,9 @@
                     </form>
                 </section>
             </div>
+            <div class="form__group field btn">
+                <button type="submit"><a  href="index.html">Voltar</a></button>
+            </div>
         </div>
         <div class="rightSide"></div>
     </div>
@@ -105,7 +108,7 @@
 
 <script>
     function cadastrar() {
-    aguardar();
+    
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -119,10 +122,10 @@
     // Validações:
     // Campos vazios
     if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-        cardErro.style.display = "block"
+        
         alert("Preencha todos os campos para prosseguir!");
 
-        finalizarAguardar();
+        
         return false;
     }
     else {
@@ -133,20 +136,20 @@
     var nome = Number(nomeVar);
 
     if (!isNaN(nome)) {
-        cardErro.style.display = "block"
+        
         alert("Nome não pode ser numérico, digite seu nome novamente");
 
-        finalizarAguardar();
+        
         return false;
     }
     else {
         setInterval(sumirMensagem, 5000)
     }
 
-    if (senhaVar.length < 8) {
-        cardErro.style.display = "block"
-        alert("Senha deve conter no mínimo 8 caracteres");
-        finalizarAguardar();
+    if (senhaVar.length < 4) {
+        
+        alert("Senha deve conter no mínimo 4 caracteres");
+        
         return false;
     }
     
@@ -156,9 +159,9 @@
 
     // Email com @ e .com
     if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-        cardErro.style.display = "block"
+        
         alert("Ops, e-mail inválido! Verifique e tente novamente.");
-        finalizarAguardar();
+        
         return false;
     }
     else {
@@ -167,9 +170,9 @@
 
     // Campo confirmacaoSenha igual ao de senha
     if (senhaVar != confirmacaoSenhaVar) {
-        cardErro.style.display = "block"
+        
         alert("As senhas inseridas devem ser iguais para prosseguir!");
-        finalizarAguardar();
+        
         return false;
     }
     else {
@@ -189,29 +192,29 @@
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar,
-            telefoneServer: telefoneVar
+            telefoneServer: telefoneVar,
+            
         })
     }).then(function (resposta) {
 
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-            cardErro.style.display = "block";
 
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
             setTimeout(() => {
                 window.location = "login.html";
-            }, "2000")
+            }, "5000")
 
             limparFormulario();
-            finalizarAguardar();
+            
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        
     });
 
     cadastrar_empresa();
@@ -247,22 +250,21 @@ function cadastrar_empresa(){
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-            cardErro.style.display = "block"
-
+            
             alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
             setTimeout(() => {
                 window.location = "login.html";
-            }, "2000")
+            }, "5000")
 
             limparFormulario();
-            finalizarAguardar();
+            
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        
     });
 
     return false;
