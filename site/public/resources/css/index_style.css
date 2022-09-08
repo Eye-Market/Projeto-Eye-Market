@@ -307,12 +307,12 @@ header{
 
 
 footer{
-    height: 200px;
     background-color: #F2F2F2;
     padding: 20px 80px;
 
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 footer .startSide{
@@ -615,6 +615,10 @@ footer .line img{
         margin-top: -30px;
         margin-left: 40px;
     }
+
+    /* footer{
+        flex-direction: column;
+    } */
 }
 
 @media screen and (max-width : 680px) {
