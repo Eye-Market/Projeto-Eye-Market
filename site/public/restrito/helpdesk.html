@@ -60,11 +60,9 @@
                     &#128229; Baixar PDF
                 </div>
 
-                <a href="helpdesk.html">
-                    <div class="opcao">
-                        &#9993; Contatar suporte
-                    </div>
-                </a>
+                <div class="opcao">
+                    &#9993; Contatar suporte
+                </div>
 
                 <div class="opcao" onclick="voltar()">
                     &#128281; Voltar
@@ -88,9 +86,9 @@
                     &#128229; Baixar PDF
                 </div>
 
-                <a href="helpdesk.html"><div class="opcao">
+                <div class="opcao">
                     &#9993; Contatar suporte
-                </div></a>
+                </div>
 
                 <div class="opcao" onclick="voltar()">
                     &#128281; Voltar
@@ -109,108 +107,63 @@
         </div>
         <div class="bot">
             <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img src="../resources/img/silhueta_apoio.png"/></div>
-        <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
-            
+            <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
         </div>
     </div>
 
     <div class="main">
         <div class="header">
-            <div class="title">Olá, usuário.</div>
-            <div class="subtitle">Você está logado como gestor</div>
+            <div class="title">Contatar suporte</div>
+            <div class="subtitle">Insira coerentemente os campos e abra um chamado para nossa equipe de suporte</div>
         </div>
 
-        <div class="cards">
-            <div class="card_maior_int">
-                <div class="info"><div class="circleRed"></div><div class="emergencia">Emergência</div></div>
-                <div class="info"><div class="circleYellow"></div><div class="atencao">Atenção</div></div>
-                <div class="info"><div class="circleGreen"></div><div class="normal">Normal</div></div>
-            </div>
-            <div class="card">
-                <div class="header_card">
-                    <div class="line_yellow"></div>
-                    <div class="title_card">INCIDENTES</div>
-                    <div class="titleTwo_card">| HOJE</div>
-                    <img src="../resources/img/seta.png"/>
-                </div>
-
-                <div class="number">2</div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
-            </div>
-            <div class="card_maior">
-                <div class="header_card">
-                    <div class="line_yellow"></div>
-                    <div class="title_card">TOTENS INOPERANTES</div>
-                    <div class="titleTwo_card">| HOJE</div>
-                </div>
-                <div class="number">5</div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
-            </div>
-            <div class="card">
-                <div class="header_card">
-                    <div class="line_green"></div>
-                    <div class="title_card">TOTENS ATIVOS</div>
-                    <div class="titleTwo_card">| HOJE</div>
-                </div>
-                <div class="number">18</div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="incidentes">
-        <div class="data">01/10/2022</div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
-        </div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
-        </div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
+        <div class="form">
+            <iframe width="560" height="580" src="https://app.pipefy.com/public/form/im9LkBHz?embedded=true" frameborder="0"></iframe>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    function abrirBot(){
+        var audio = new Audio("sound/som.mp3");
+        audio.oncanplaythrough = function () {
+            audio.play();
+        }
+
+        audio.pause();
+        // 
+
+        bot_help.style.display = "block";
+    }
+
+    function fecharBot(){
+        bot_help.style.display = 'none';
+    }
+
+    function opcao1(){
+        msgFirst.style.display = 'none';
+        escolha.style.display = 'none';
+        opcaoOne.style.display = 'flex';
+        escolha2.style.display = 'flex';
+    }
+
+    function opcao2(){
+        msgFirst.style.display = 'none';
+        escolha.style.display = 'none';
+        opcaoTwo.style.display = 'flex';
+        escolha3.style.display = 'flex';
+    }
+
+    function voltar(){
+        msgFirst.style.display = 'flex';
+        escolha.style.display = 'flex';
+        opcaoOne.style.display = 'none';
+        escolha2.style.display = 'none';
+        opcaoTwo.style.display = 'none';
+        escolha3.style.display = 'none';
+    }
+</script>
 
 <script src="../resources/js/bot.js"></script>
 

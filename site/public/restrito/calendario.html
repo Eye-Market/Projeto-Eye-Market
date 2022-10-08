@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../resources/lib/main.css' rel='stylesheet' />
+<script src='../resources/lib/main.js'></script>
+<link rel="stylesheet" href="../resources/css/menu_dash.css">
+<link rel="stylesheet" href="../resources/css/calendario_style.css">
+<link rel="stylesheet" href="../resources/css/bot.css">
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2022-10-01',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      events: [
+        {
+          title: 'Incidente',
+          start: '2022-10-03T13:00:00',
+          constraint: 'businessHours',
+          color: '#FF0404'
+        },
+        {
+          title: 'Processo de solução',
+          start: '2022-10-03',
+          end: '2022-10-06',
+          color: '#522952'
+        },
+
+        {
+          title: 'Incidente',
+          start: '2022-09-29T13:00:00',
+          constraint: 'businessHours',
+          color: '#FFDA47'
+        },
+        {
+          title: 'Processo de solução',
+          start: '2022-09-29',
+          end: '2022-09-30',
+          color: '#522952'
+        },
+
+
+        // red areas where no events can be dropped
+        {
+          start: '2022-10-03',
+          end: '2022-10-06',
+          overlap: false,
+          display: 'background',
+          color: '#FF0404'
+        },
+        {
+          start: '2022-09-29',
+          end: '2020-09-30',
+          overlap: false,
+          display: 'background',
+          color: '#FFDA47'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+<style>
+
+  
+
+  #calendar {
+    width: 1100px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 3px 6px rgb(177, 177, 177);
+  }
+
+</style>
+</head>
+<body>
+  <div class="bot_help" id="bot_help">
+    <div class="bot_header">
+
+        <div class="nomeBot">
+            Suporte | EyeMarket
+        </div>
+
+        <div class="bot_sair" onclick="fecharBot()">
+            X
+        </div>
+    </div>
+
+    <div class="mensagens">
+        <div class="mensagem_bot" id="msgFirst">
+            <div class="perfil_bot">
+                <img src="../resources/img/robo.png" alt="">
+            </div>
+            <div class="msg">
+                Olá &#128075; , no que posso ajudar?
+            </div>
+        </div>
+        <div class="escolha" id="escolha">
+            Escolha uma opção abaixo
+
+            <div class="opcao" onclick="opcao1()">
+                Problema com o site web
+            </div>
+
+            <div class="opcao" onclick="opcao2()">
+                Problema com a aplicação no totem
+            </div>
+        </div>
+
+        <div class="mensagem_bot" id="opcaoOne">
+            <div class="perfil_bot">
+                <img src="../resources/img/robo.png" alt="">
+            </div>
+            <div class="msg">
+                &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+            </div>
+        </div>
+
+        <div class="escolha" id="escolha2" style="display: none;">
+            Escolha uma opção abaixo
+
+            <div class="opcao" onclick="opcao1()">
+                &#128229; Baixar PDF
+            </div>
+
+            <a href="helpdesk.html">
+                <div class="opcao">
+                    &#9993; Contatar suporte
+                </div>
+            </a>
+
+            <div class="opcao" onclick="voltar()">
+                &#128281; Voltar
+            </div>
+        </div>
+
+
+        <div class="mensagem_bot" id="opcaoTwo">
+            <div class="perfil_bot">
+                <img src="../resources/img/robo.png" alt="">
+            </div>
+            <div class="msg">
+                &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+            </div>
+        </div>
+
+        <div class="escolha" id="escolha3" style="display: none;">
+            Escolha uma opção abaixo
+
+            <div class="opcao" onclick="opcao1()">
+                &#128229; Baixar PDF
+            </div>
+
+            <a href="helpdesk.html"><div class="opcao">
+                &#9993; Contatar suporte
+            </div></a>
+
+            <div class="opcao" onclick="voltar()">
+                &#128281; Voltar
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="menu_dash">
+    <a href="index_restrita.html">
+        <div class="icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
+    </a>
+    <div class="mid">
+        <a href="funcionarios.html"><div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div></a>
+        <a href="graficos.html">
+            <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
+        </a>
+        <div class="atv_icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
+        <a href="Totens.html"><div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div></a>
+    </div>
+    <div class="bot">
+        <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img src="../resources/img/silhueta_apoio.png" /></div>
+        <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
+    </div>
+</div>
+<div class="main">
+  <div class="header">
+    <div class="title">Calendário de incidentes</div>
+    <div class="subtitle">Quantidade de incidentes por dia/semana/mês</div>
+  </div>
+    <div id='calendar' style="margin-top: 50px; margin-left: 0px"></div>
+</div>
+
+
+</body>
+</html>
+
+<script src="../resources/js/bot.js"></script>
+
+<script>
+   function sair(){
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+</script>

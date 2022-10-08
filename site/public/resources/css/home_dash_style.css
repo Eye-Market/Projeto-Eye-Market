@@ -1,0 +1,296 @@
+body{
+    background-color: #F9F9F9;
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+.main{
+    width: 70%;
+    margin-left: 100px;
+    padding: 40px 0px 0px 70px;
+}
+
+.header .title{
+    font-size: 30px;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+.header .subtitle{
+    font-size: 25px;
+    color: var(--cor-principal);
+}
+
+.cards{
+    width: 870px;
+    height: 450px;
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card_maior{
+    width: 450px;
+    height: 200px;
+    box-shadow: 0px 3px 6px #797979;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card_maior_int{
+    width: 450px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info{
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.emergencia{
+    color: #FF0404;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.atencao{
+    color: #FFDA47;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.normal{
+    color: #5EFF47;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.circleRed{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #FF0404;
+}
+
+.circleYellow{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #FFDA47;
+}
+
+.circleGreen{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #5EFF47;
+}
+
+.card{
+    width: 350px;
+    height: 200px;
+    box-shadow: 0px 3px 6px #797979;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header_card{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.line_yellow{
+    width: 5px;
+    height: 90%;
+    background-color: #FFDA47;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.line_green{
+    width: 5px;
+    height: 90%;
+    background-color: #5EFF47;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.line_red{
+    width: 5px;
+    height: 90%;
+    background-color: #FF0404;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.title_card{
+    font-size: 20px;
+    color: var(--cor-principal);
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.titleTwo_card{
+    font-size: 20px;
+    color: var(--cor-principal);
+    margin-left: 10px;
+}
+
+.header_card img{
+    width: 25px;
+}
+
+.number{
+    font-size: 70px;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+.detalhe{
+    font-size: 18px;
+    color: var(--cor-principal);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.incidentes{
+    width: 270px;
+    height: 99.9vh;
+    background-color: white;
+    box-shadow: 0px 3px 6px #797979;
+    overflow: auto;
+}
+
+.data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--cor-principal);
+    margin-top: 30px;
+}
+
+.incidente{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.header_inci{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title_inci{
+    font-size: 20px;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+.line_inci{
+    width: 80px;
+    height: 5px;
+    background-color: var(--cor-principal);
+    border-radius: 20px;
+}
+
+.infos{
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.form iframe{
+    margin-top: 20px;
+    width: 900px;
+    padding: 20px;
+    box-shadow: 0px 3px 6px rgb(204, 204, 204);
+    background-color: white;
+}
+
+
+.row_title{
+    color: var(--cor-principal);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.row{
+    color: var(--cor-principal);
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width:1300px) {
+    body{
+        flex-direction: column;
+    }
+
+    .incidentes{
+        margin-left: 100px;
+        display: flex;
+        width: 90%;
+        height: 100%;
+    }
+
+    .data{
+        display: none;
+    }
+
+    .incidente{
+        margin-left: 80px;
+    }
+}
+
+@media screen and (max-width:1060px) {
+    .cards{
+        width: 500px;
+        height: 100%;
+    }
+
+    .card{
+        margin-top: 20px;
+    }
+
+    .card_maior{
+        margin-top: 20px;
+    }
+
+    .line_inci{
+        display: none;
+    }
+
+    .incidentes{
+        margin-top: 30px;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .cards{
+        width: 250px;
+    }
+
+    .subtitle{
+        font-size: 13px;
+    }
+}

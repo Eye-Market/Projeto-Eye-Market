@@ -23,7 +23,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "eyemarket",
     user: "root",
-    password: "x",
+    password: "Kkmjpkjb2021",
 };
 
 function executar(instrucao) {

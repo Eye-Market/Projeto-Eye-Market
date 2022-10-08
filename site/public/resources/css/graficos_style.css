@@ -1,0 +1,91 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--fundoSite);
+}
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';
+}
+
+.graficos_left{
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+}
+
+
+.graficos_right{
+    margin-left: 150px;
+    width: 200px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main{
+    width: 70%;
+    margin-left: 100px;
+    padding: 40px 0px 0px 70px;
+    display: flex;
+}
+
+.title{
+    font-size: 30px;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+.header .subtitle{
+    font-size: 25px;
+    color: var(--cor-principal);
+}
+
+#myBar{
+    width: 100%;
+}
+
+
+#myChart{
+    height: 250px;
+}
+
+.pizza{
+    width: 300px;
+    box-shadow: 0px 3px 6px rgb(221, 221, 221);
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+
+.pizza .title{
+    font-size: 19px;
+    margin-left: 15px;
+}
+
+.incidentes{
+    box-shadow: 0px 3px 6px rgb(221, 221, 221);
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 430px;
+}
+
+.incidentes .title{
+    font-size: 19px;
+    
+}
+
+.temperatura{
+    box-shadow: 0px 3px 6px rgb(221, 221, 221);
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 430px;
+}
+
+.temperatura .title{
+    font-size: 19px;
+}

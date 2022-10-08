@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../resources/css/funcionarios_style.css">
+    <link rel="stylesheet" href="../resources/css/menu_dash.css">
+    <link rel="stylesheet" href="../resources/css/bot.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="bot_help" id="bot_help">
+        <div class="bot_header">
+
+            <div class="nomeBot">
+                Suporte | EyeMarket
+            </div>
+
+            <div class="bot_sair" onclick="fecharBot()">
+                X
+            </div>
+        </div>
+
+        <div class="mensagens">
+            <div class="mensagem_bot" id="msgFirst">
+                <div class="perfil_bot">
+                    <img src="../resources/img/robo.png" alt="">
+                </div>
+                <div class="msg">
+                    Olá &#128075; , no que posso ajudar?
+                </div>
+            </div>
+            <div class="escolha" id="escolha">
+                Escolha uma opção abaixo
+
+                <div class="opcao" onclick="opcao1()">
+                    Problema com o site web
+                </div>
+
+                <div class="opcao" onclick="opcao2()">
+                    Problema com a aplicação no totem
+                </div>
+            </div>
+
+            <div class="mensagem_bot" id="opcaoOne">
+                <div class="perfil_bot">
+                    <img src="../resources/img/robo.png" alt="">
+                </div>
+                <div class="msg">
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                </div>
+            </div>
+
+            <div class="escolha" id="escolha2" style="display: none;">
+                Escolha uma opção abaixo
+
+                <div class="opcao" onclick="opcao1()">
+                    &#128229; Baixar PDF
+                </div>
+
+                <a href="helpdesk.html">
+                    <div class="opcao">
+                        &#9993; Contatar suporte
+                    </div>
+                </a>
+
+                <div class="opcao" onclick="voltar()">
+                    &#128281; Voltar
+                </div>
+            </div>
+
+
+            <div class="mensagem_bot" id="opcaoTwo">
+                <div class="perfil_bot">
+                    <img src="../resources/img/robo.png" alt="">
+                </div>
+                <div class="msg">
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                </div>
+            </div>
+
+            <div class="escolha" id="escolha3" style="display: none;">
+                Escolha uma opção abaixo
+
+                <div class="opcao" onclick="opcao1()">
+                    &#128229; Baixar PDF
+                </div>
+
+                <a href="helpdesk.html"><div class="opcao">
+                    &#9993; Contatar suporte
+                </div></a>
+
+                <div class="opcao" onclick="voltar()">
+                    &#128281; Voltar
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu_dash">
+        <a href="index_restrita.html">
+            <div class="icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
+        </a>
+        <div class="mid">
+            <a href="funcionarios.html"><div class="atv_icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div></a>
+            <a href="graficos.html">
+                <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
+            </a>
+            <a href="calendario.html"><div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div></a>
+            <a href="Totens.html"><div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div></a>
+        </div>
+        <div class="bot">
+            <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img src="../resources/img/silhueta_apoio.png" /></div>
+            <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
+
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <div class="title">Carlos Alberto</div>
+            <div class="subtitle">Técnico responsável pela manutenção dos Totens</div>
+        </div>
+
+        <div class="main_update">
+            <div class="row">
+                <div class="label">NOME COMPLETO:</div>
+                <input type="text" value="CARLOS ALBERTO FRANÇA DA SILVA">
+            </div>
+
+            <div class="row">
+                <div class="label">E-MAIL:</div>
+                <input type="text" value="CARLOS_ALBERTO@GMAIL.COM">
+            </div>
+
+            <div class="row">
+                <div class="label">TELEFONE:</div>
+                <input type="text" value="(11) 966325595">
+            </div>
+
+            <div class="row">
+                <div class="label">CARGO:</div>
+                <input type="text" value="TÉCNICO">
+            </div>
+
+            <div class="row">
+                <div class="label">SENHA:</div>
+                <input type="password" value="CARLOSALBERTO">
+            </div>
+
+            <div class="btns_upd">
+                <a href="funcionarios.html"><button class="cancelar_upd">CANCELAR</button></a>
+                <button class="editar">EDITAR</button>
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+
+</html>
+
+<script src="../resources/js/bot.js"></script>
+
+<script>
+    function sair(){
+         sessionStorage.clear();
+         window.location.replace('../index.html');
+     }
+ </script>
