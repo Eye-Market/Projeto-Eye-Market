@@ -4207,7 +4207,7 @@ var FullCalendar = (function (exports) {
         closeHint: 'Close',
         timeHint: 'Time',
         eventHint: 'Event',
-        allDayText: 'all-day',
+        allDayText: '24h',
         moreLinkText: 'more',
         noEventsText: 'No events to display',
     };

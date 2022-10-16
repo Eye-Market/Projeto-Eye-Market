@@ -13,9 +13,6 @@ a{
     padding: 40px 0px 0px 70px;
 }
 
-.header{
-    display: flex;
-}
 
 .hint_text{
     font-size: 18px;
@@ -416,17 +413,3 @@ a{
     [aria-label]:hover::after {
     display: block;
     }
-
-    @keyframes bounce {
-        20%{
-            transform: translate3d(0, -20px, 0);
-        }
-      
-        80%{
-          transform: translate3d(0,0px,0);
-        }
-      
-        100%{
-            transform: translate3d(0, 0px, 0);
-        }
-      }

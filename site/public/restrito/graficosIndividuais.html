@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/css/funcionarios_style.css">
     <link rel="stylesheet" href="../resources/css/menu_dash.css">
+    <link rel="stylesheet" href="../resources/css/graficoIndiv.css">
     <link rel="stylesheet" href="../resources/css/bot.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
-    <title>Dashboard | Funcionários</title>
+    <title>Dashboard | Gráficos</title>
 </head>
 
 <body>
@@ -110,7 +111,7 @@
         </a>
         <div class="mid">
             <a href="funcionarios.html">
-                <div class="atv_icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
+                <div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
             </a>
             <a href="graficos.html">
                 <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
@@ -119,7 +120,7 @@
                 <div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
             </a>
             <a href="Totens.html">
-                <div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
+                <div class="atv_icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
             </a>
         </div>
         <div class="bot">
@@ -130,50 +131,120 @@
 
         </div>
     </div>
-
     <div class="main">
-        <div class="header">
-            <div class="title">Carlos Alberto</div>
-            <div class="subtitle">Técnico responsável pela manutenção dos Totens</div>
-        </div>
 
-        <div class="main_update">
-            <div class="row">
-                <div class="label">NOME COMPLETO:</div>
-                <input type="text" value="CARLOS ALBERTO FRANÇA DA SILVA">
+            <div class="container">
+                <div class="container_header">
+                    <div class="header_title">Totem |ID </div>
+                    <div class="infos">
+                        <div class="left_side">
+                            <div class="info">
+                                <div class="title">Processador:</div>
+                                <div class="subtitulo">Intel(R) Core (TM) i5-1035G1 CPU @ 1.00GHz</div>
+                            </div>
+                            <div class="info">
+                                <div class="title">Armazenamento:</div>
+                                <div class="subtitulo">238,5 GiB</div>
+                            </div>
+                            <div class="info">
+                                <div class="title">Sistema Operacional:</div>
+                                <div class="subtitulo">Ubuntu</div>
+                            </div>
+                        </div>
+                        <div class="right_side">
+                            <img src="../resources/img/relogio.png" alt="">
+                            <div class="text">TEMPO ATIVIDADE</div>
+                            <div class="text">2022-10-13T20:46:58Z</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="graficos">
+                    <div class="temperatura">
+                        <div class="title">Temperatura do totem</div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <div class="memoria">
+                        <div class="title">Memória RAM</div>
+                        <canvas id="myMemoria"></canvas>
+                    </div>
+
+                    <div class="processos">
+                        <img src="../resources/img/mapa-do-site.png" alt="">
+                        <div class="title">200 Processos ativos</div>
+                    </div>
+                </div>
             </div>
-
-            <div class="row">
-                <div class="label">E-MAIL:</div>
-                <input type="text" value="CARLOS_ALBERTO@GMAIL.COM">
-            </div>
-
-            <div class="row">
-                <div class="label">TELEFONE:</div>
-                <input type="text" value="(11) 966325595">
-            </div>
-
-            <div class="row">
-                <div class="label">CARGO:</div>
-                <input type="text" value="TÉCNICO">
-            </div>
-
-            <div class="row">
-                <div class="label">SENHA:</div>
-                <input type="password" value="CARLOSALBERTO">
-            </div>
-
-            <div class="btns_upd">
-                <a href="funcionarios.html"><button class="cancelar_upd">CANCELAR</button></a>
-                <button class="editar">EDITAR</button>
-            </div>
-        </div>
-
-
     </div>
 </body>
 
 </html>
+
+
+<script>
+    const labels = [
+        '09h',
+        '11h',
+        '13h',
+        '15h',
+        '17h',
+        '19h',
+        '21h',
+        '23h',
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Temperatura totem 1',
+            backgroundColor: 'rgb(82,41,82)',
+            borderColor: 'rgb(87,48,87)',
+            data: [19, 21, 20, 22, 25, 28, 35, 25],
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+
+
+const dataTwo = {
+  labels: [
+    'Em uso',
+    'Disponível'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [6.8, 2.2],
+    backgroundColor: [
+      'rgb(82,41,82)',
+      'rgb(54, 162, 235)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+
+const configTwo = {
+  type: 'doughnut',
+  data: dataTwo,
+};
+
+</script>
+
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    const myMemoria = new Chart(
+        document.getElementById('myMemoria'),
+        configTwo
+    );
+</script>
 
 <script src="../resources/js/bot.js"></script>
 

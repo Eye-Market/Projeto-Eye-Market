@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/css/home_dash_style.css">
+    <link rel="stylesheet" href="../resources/css/helpdesk.css">
     <link rel="stylesheet" href="../resources/css/menu_dash.css">
     <link rel="stylesheet" href="../resources/css/bot.css">
-    <title>Document</title>
+    <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
+    <title>Dashboard | Suporte</title>
 </head>
+
 <body>
 
     <div class="bot_help" id="bot_help">
@@ -49,7 +52,8 @@
                     <img src="../resources/img/robo.png" alt="">
                 </div>
                 <div class="msg">
-                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido
+                    seu problema clique em <b>"Contatar Suporte"</b>
                 </div>
             </div>
 
@@ -75,7 +79,8 @@
                     <img src="../resources/img/robo.png" alt="">
                 </div>
                 <div class="msg">
-                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido
+                    seu problema clique em <b>"Contatar Suporte"</b>
                 </div>
             </div>
 
@@ -98,16 +103,26 @@
     </div>
 
     <div class="menu_dash">
-        <div class="atv_icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png"/></div>
+        <div class="atv_icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
         <div class="mid">
-            <a href="funcionarios.html"><div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png"/></div></a>
-            <a href="graficos.html"><div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png"/></div></a>
-            <a href="calendario.html"><div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png"/></div></a>
-            <a href="Totens.html"><div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png"/></div></a>
+            <a href="funcionarios.html">
+                <div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
+            </a>
+            <a href="graficos.html">
+                <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
+            </a>
+            <a href="calendario.html">
+                <div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
+            </a>
+            <a href="Totens.html">
+                <div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
+            </a>
         </div>
         <div class="bot">
-            <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img src="../resources/img/silhueta_apoio.png"/></div>
-            <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
+            <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img
+                    src="../resources/img/silhueta_apoio.png" /></div>
+            <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" />
+            </div>
         </div>
     </div>
 
@@ -118,14 +133,16 @@
         </div>
 
         <div class="form">
-            <iframe width="560" height="580" src="https://app.pipefy.com/public/form/im9LkBHz?embedded=true" frameborder="0"></iframe>
+            <iframe width="560" height="580" src="https://app.pipefy.com/public/form/im9LkBHz?embedded=true"
+                frameborder="0"></iframe>
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
-    function abrirBot(){
+    function abrirBot() {
         var audio = new Audio("sound/som.mp3");
         audio.oncanplaythrough = function () {
             audio.play();
@@ -137,25 +154,25 @@
         bot_help.style.display = "block";
     }
 
-    function fecharBot(){
+    function fecharBot() {
         bot_help.style.display = 'none';
     }
 
-    function opcao1(){
+    function opcao1() {
         msgFirst.style.display = 'none';
         escolha.style.display = 'none';
         opcaoOne.style.display = 'flex';
         escolha2.style.display = 'flex';
     }
 
-    function opcao2(){
+    function opcao2() {
         msgFirst.style.display = 'none';
         escolha.style.display = 'none';
         opcaoTwo.style.display = 'flex';
         escolha3.style.display = 'flex';
     }
 
-    function voltar(){
+    function voltar() {
         msgFirst.style.display = 'flex';
         escolha.style.display = 'flex';
         opcaoOne.style.display = 'none';
@@ -168,8 +185,8 @@
 <script src="../resources/js/bot.js"></script>
 
 <script>
-    function sair(){
-         sessionStorage.clear();
-         window.location.replace('../index.html');
-     }
- </script>
+    function sair() {
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+</script>
