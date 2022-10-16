@@ -7,9 +7,79 @@
     <link rel="stylesheet" href="../resources/css/home_dash_style.css">
     <link rel="stylesheet" href="../resources/css/menu_dash.css">
     <link rel="stylesheet" href="../resources/css/bot.css">
-    <title>Document</title>
+    <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
+    <title>Dashboard | Inicio</title>
 </head>
 <body>
+
+    <div class="container_incidente" id="tutorialIncidente">
+        <div class="cont_main">
+            <div class="em" id="em1">
+                <img src="../resources/img/cyborg.png" alt="">
+                <div class="txt">
+                    <b>Olá usuário.</b>
+                    <br>
+                    Sou a EM, um bot da Eye Market, e vim te mostrar como funciona nosso processo para coletar incidentes das máquinas
+                </div>
+            </div>
+
+            <div class="em" id="em2" style="display: none;">
+                <div class="txt">
+                    <b>Vamos simular que esse é seu totem</b>
+                </div>
+                <center><img src="../resources/img/phone.png" alt=""></center>
+            </div>
+
+            <div class="em" id="em3" style="display: none;">
+                <div class="txt">
+                    <b id="texto">Por algum motivo, seja de armazenamento ou não, ele teve uma parada repentina, ou seja, desligou</b>
+                </div>
+                <center>
+                    <div class="cuidado" id="cuidado"><img src="../resources/img/mensagem-de-erro.png" alt=""></div>
+                    <img id="totem" src="../resources/img/phone.png" alt=""></center>
+            </div>
+
+            <div class="em" id="em4" style="display: none;">
+                <div class="txt">
+                    <b id="texto">E por conta da parada repentina, um evento não esperado (Exception) é gerado</b>
+                </div>
+                <center>
+                    <div class="cuidadoo"><img src="../resources/img/mensagem-de-erro.png" alt=""></div>
+            </div>
+
+            <div class="em" id="em5" style="display: none;">
+                <img src="../resources/img/cyborg.png" alt="">
+                <div class="txt">
+                    <b>E nossa plataforma é total programada para receber esse evento e disponibilizar o relatório na sua Dashboard</b>
+                </div>
+            </div>
+
+            <div class="escolhas" id="escolha1">
+                <div class="fec" onclick="fecharTutorial()">Fechar</div>
+                <div class="px" onclick="proximo()">Próximo</div>
+            </div>
+
+            <div class="escolhas" id="escolhaTwo" style="display: none;">
+                <div class="fec" onclick="fecharTutorial()">Fechar</div>
+                <div class="px" onclick="proximo2()">Próximo</div>
+            </div>
+
+            <div class="escolhas" id="escolhaThree" style="display: none;">
+                <div class="fec" onclick="fecharTutorial()">Fechar</div>
+                <div class="px" onclick="proximo3()">Próximo</div>
+            </div>
+
+            <div class="escolhas" id="escolhaFour" style="display: none;">
+                <div class="fec" onclick="fecharTutorial()">Fechar</div>
+                <div class="px" onclick="proximo4()">Próximo</div>
+            </div>
+            <center><p id="pergunta" style="display: none;">Isso foi util?</p></center>
+            <div class="escolhas" id="escolhaFive" style="display: none;">
+                <div class="fec" onclick="fecharTutorial()">Nos avalie</div>
+                <div class="px" onclick="fecharTutorial()">Sim</div>
+            </div>
+        </div>
+    </div>
 
     <div class="bot_help" id="bot_help">
         <div class="bot_header">
@@ -56,8 +126,8 @@
             <div class="escolha" id="escolha2" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-site.pdf" download="">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html">
@@ -84,8 +154,8 @@
             <div class="escolha" id="escolha3" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-totem.pdf">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html"><div class="opcao">
@@ -116,8 +186,12 @@
 
     <div class="main">
         <div class="header">
-            <div class="title">Olá, usuário.</div>
+            <div>
+                <div class="title">Olá, usuário.</div>
             <div class="subtitle">Você está logado como gestor</div>
+            </div>
+
+            <div class="hint_text" onclick="abrirTutorial()">Como pegamos os incidentes?</div>
         </div>
 
         <div class="cards">
@@ -128,13 +202,13 @@
             </div>
             <div class="card">
                 <div class="header_card">
-                    <div class="line_yellow"></div>
+                    <div class="line_red"></div>
                     <div class="title_card">INCIDENTES</div>
                     <div class="titleTwo_card">| HOJE</div>
                     <img src="../resources/img/seta.png"/>
                 </div>
 
-                <div class="number">2</div>
+                <div class="number">3</div>
                 <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
             </div>
             <div class="card_maior">
@@ -143,16 +217,16 @@
                     <div class="title_card">TOTENS INOPERANTES</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
-                <div class="number">5</div>
+                <div class="number">1</div>
                 <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
             </div>
             <div class="card">
                 <div class="header_card">
-                    <div class="line_green"></div>
+                    <div class="line_yellow"></div>
                     <div class="title_card">TOTENS ATIVOS</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
-                <div class="number">18</div>
+                <div class="number">2</div>
                 <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
             </div>
         </div>
@@ -218,5 +292,42 @@
     function sair(){
          sessionStorage.clear();
          window.location.replace('../index.html');
+     }
+
+     function abrirTutorial(){
+        tutorialIncidente.style.display = "flex";
+     }
+
+     function fecharTutorial(){
+        tutorialIncidente.style.display = "none";
+     }
+
+     function proximo(){
+        em1.style.display = "none";
+        em2.style.display = "block";
+        escolha1.style.display = "none";
+        escolhaTwo.style.display = "flex";
+     }
+
+     function proximo2(){
+        em2.style.display = "none";
+        em3.style.display = "block";
+        escolhaTwo.style.display = "none";
+        escolhaThree.style.display = "flex";
+     }
+
+     function proximo3(){
+        em3.style.display = "none";
+        em4.style.display = "block";
+        escolhaThree.style.display = "none";
+        escolhaFour.style.display = "flex";
+     }
+
+     function proximo4(){
+        em4.style.display = "none";
+        em5.style.display = "flex";
+        escolhaFour.style.display = "none";
+        escolhaFive.style.display = "flex";
+        pergunta.style.display = "block";
      }
  </script>

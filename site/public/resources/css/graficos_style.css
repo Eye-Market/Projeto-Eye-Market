@@ -21,7 +21,7 @@ body{
     height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .main{
@@ -42,6 +42,46 @@ body{
     color: var(--cor-principal);
 }
 
+
+
+.red{
+    color: #FF0404;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.yellow{
+    font-weight: bold;
+    color: #FFDA47;
+    margin-top: 20px;
+}
+
+.green{
+    font-weight: bold;
+    color: #5EFF47;
+    margin-top: 20px;
+}
+
+.barraNormal{
+    width: 300px;
+    height: 10px;
+    background-color: #5EFF47;
+    border-radius: 20px;
+}
+
+.barraAtencao{
+    width: 200px;
+    height: 10px;
+    background-color: #FFDA47;
+    border-radius: 20px;
+}
+
+.barraEmergencia{
+    width: 100px;
+    height: 10px;
+    background-color: #FF0404;
+    border-radius: 20px;
+}
 #myBar{
     width: 100%;
 }
@@ -79,8 +119,6 @@ body{
 }
 
 .temperatura{
-    box-shadow: 0px 3px 6px rgb(221, 221, 221);
-    background-color: white;
     padding: 20px;
     border-radius: 20px;
     width: 430px;

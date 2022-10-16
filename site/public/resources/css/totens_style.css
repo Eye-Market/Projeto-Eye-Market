@@ -2,6 +2,10 @@ body{
     background-color: var(--fundoSite);
 }
 
+a{
+  text-decoration: none;
+}
+
 .main{
     width: 70%;
     margin-left: 100px;

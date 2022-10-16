@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../resources/css/graficos_style.css">
     <link rel="stylesheet" href="../resources/css/bot.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Document</title>
+    <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
+    <title>Dashboard | Gráficos</title>
 </head>
 
 <body>
@@ -59,8 +60,8 @@
             <div class="escolha" id="escolha2" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-site.pdf">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html">
@@ -88,8 +89,8 @@
             <div class="escolha" id="escolha3" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-totem.pdf">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html">
@@ -146,8 +147,14 @@
                 <canvas id="myBar"></canvas>
             </div>
             <div class="temperatura">
-                <div class="title">Temperatura dos totens</div>
-                <canvas id="myChart"></canvas>
+                <div class="title">Frequência de alertas</div>
+
+                <div class="green">Normal</div>
+                <div class="barraNormal"></div>
+                <div class="yellow">Atenção</div>
+                <div class="barraAtencao"></div>
+                <div class="red">Emergência</div>
+                <div class="barraEmergencia"></div>
             </div>
         </div>
     </div>
@@ -171,13 +178,13 @@
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Temperatura totem 1',
+            label: 'Normal',
             backgroundColor: 'rgb(82,41,82)',
             borderColor: 'rgb(87,48,87)',
             data: [19, 21, 20, 22, 25, 28, 35, 25],
         },
         {
-            label: 'Temperatura totem 2',
+            label: 'Atenção',
             backgroundColor: 'rgb(161,117,161)',
             borderColor: 'rgb(161,117,161)',
             data: [18, 18, 19, 19, 20, 25, 30, 20],
@@ -201,7 +208,7 @@
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [18, 5],
+            data: [2, 1],
             backgroundColor: [
                 'rgb(82,41,82)',
                 'rgb(161,117,161)'
@@ -242,13 +249,11 @@
             }
         },
     };
+
 </script>
 
 <script>
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
+    
 
     const myPizza = new Chart(
         document.getElementById('myPizza'),
@@ -264,8 +269,8 @@
 <script src="../resources/js/bot.js"></script>
 
 <script>
-    function sair(){
-         sessionStorage.clear();
-         window.location.replace('../index.html');
-     }
- </script>
+    function sair() {
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+</script>
