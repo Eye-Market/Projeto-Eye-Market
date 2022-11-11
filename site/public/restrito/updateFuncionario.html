@@ -133,39 +133,34 @@
 
     <div class="main">
         <div class="header">
-            <div class="title">Carlos Alberto</div>
-            <div class="subtitle">Técnico responsável pela manutenção dos Totens</div>
+            <div class="title" id="nome">...</div>
+            <div class="subtitle" id="descricao">...</div>
         </div>
 
         <div class="main_update">
             <div class="row">
                 <div class="label">NOME COMPLETO:</div>
-                <input type="text" value="CARLOS ALBERTO FRANÇA DA SILVA">
+                <input id="iptNome" type="text" value="">
             </div>
 
             <div class="row">
                 <div class="label">E-MAIL:</div>
-                <input type="text" value="CARLOS_ALBERTO@GMAIL.COM">
+                <input id="iptEmail" type="text" value="">
             </div>
 
             <div class="row">
                 <div class="label">TELEFONE:</div>
-                <input type="text" value="(11) 966325595">
-            </div>
-
-            <div class="row">
-                <div class="label">CARGO:</div>
-                <input type="text" value="TÉCNICO">
+                <input id="iptTelefone" type="text" value="">
             </div>
 
             <div class="row">
                 <div class="label">SENHA:</div>
-                <input type="password" value="CARLOSALBERTO">
+                <input id="iptSenha" type="text" value="">
             </div>
 
             <div class="btns_upd">
                 <a href="funcionarios.html"><button class="cancelar_upd">CANCELAR</button></a>
-                <button class="editar">EDITAR</button>
+                <button class="editar" onclick="atualizarFuncionario()">EDITAR</button>
             </div>
         </div>
 
@@ -178,8 +173,142 @@
 <script src="../resources/js/bot.js"></script>
 
 <script>
+
+    var id = queryString("id");
+    console.log(id);
+    preencherInputs(id);
+
     function sair() {
         sessionStorage.clear();
         window.location.replace('../index.html');
     }
+
+    function queryString(parameter) {  
+              var loc = location.search.substring(1, location.search.length);   
+              var param_value = false;   
+              var params = loc.split("&");   
+              for (i=0; i<params.length;i++) {   
+                  param_name = params[i].substring(0,params[i].indexOf('='));   
+                  if (param_name == parameter) {                                          
+                      param_value = params[i].substring(params[i].indexOf('=')+1)   
+                  }   
+              }   
+              if (param_value) {   
+                  return param_value;   
+              }   
+              else {   
+                  return undefined;   
+              }   
+        }
+
+     function preencherInputs(id){
+        fetch(`/usuarios/listarPorID/${id}`, { cache: "no-store" })
+            .then(function (response) {
+                console.log("Entrou aqui 2");
+                if (response.status == 200) {
+                    console.log("Entrou aqui 3");
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            console.log("Tudo certo");
+                            nome.innerHTML = registro.NomeCompleto;
+                            iptNome.value = registro.NomeCompleto;
+                            iptEmail.value = registro.Email;
+                            iptTelefone.value = registro.Telefone;
+                            iptSenha.value = registro.Senha;
+
+                            if(registro.Cargo == "Técnico"){
+                                descricao.innerHTML = "Técnico responsável pela manutenção dos Totens";
+                            }else if(registro.Cargo == "Supervisor"){
+                                descricao.innerHTML = "Supervisor responsável pelo monitoramento de incidentes";
+                            }else{
+                                descricao.innerHTML = "Gestor responsável pelo controle geral dos totens";
+                            }
+
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados: ${error.message}`
+                );
+            });
+     }
+
+
+     function atualizarFuncionario(){
+        var nomeVar = iptNome.value;
+        var emailVar = iptEmail.value;
+        var telefoneVar = iptTelefone.value;
+        var senhaVar = iptSenha.value;
+
+
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "") {
+
+            alert("Preencha todos os campos para prosseguir!");
+            return false;
+        }
+
+        // Nome numérico
+        var nome = Number(nomeVar);
+
+        if (!isNaN(nome)) {
+
+            // alert("Nome não pode ser numérico, digite seu nome novamente");
+            alert("Nome não pode ser numérico");
+
+            return false;
+        }
+
+        if (senhaVar.length < 4) {
+
+            alert("Senha deve conter no mínimo 4 caracteres");
+            return false;
+        }
+
+        // Email com @ e .com
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+
+            alert("E-mail inválido");
+
+            return false;
+        }
+
+
+
+        fetch(`/usuarios/atualizarFuncionario`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                telefoneServer: telefoneVar,
+                idServer: id
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.location = 'funcionarios.html';
+            } else {
+                throw ("Houve um erro ao tentar realizar o update!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+     }
 </script>

@@ -164,7 +164,7 @@
 
             <div class="btns">
                 <button class="cancelar" onclick="cancelarInativo()">Cancelar</button>
-                <button class="cadastrar">Inativar</button>
+                <button class="cadastrar" onclick="inativarFuncionario()">Inativar</button>
             </div>
         </div>
     </div>
@@ -236,6 +236,8 @@
 
 <script>
 
+    var escolhaInativo = 0;
+
     window.onload = buscarFuncionarios('todos');
 
     function buscarFuncionarios(cargo) {
@@ -264,7 +266,7 @@
                         funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
-                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo()' /></td> </tr>`;
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
 
                         }
                         // plotarGrafico(resposta, idAquario);
@@ -299,7 +301,7 @@
                         funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
-                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo()' /></td> </tr>`;
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
 
                         }
                         // plotarGrafico(resposta, idAquario);
@@ -413,12 +415,27 @@
         cadastro.style.display = 'none';
     }
 
-    function abrirInativo() {
+    function abrirInativo(id) {
         inativar.style.display = 'flex'
+        escolhaInativo = id;
     }
 
     function cancelarInativo() {
         inativar.style.display = 'none'
+    }
+
+    function inativarFuncionario(){
+        cancelarInativo();
+        location.reload();
+        console.log(escolhaInativo);
+        fetch(`/usuarios/inativar/${escolhaInativo}`, { cache: "no-store" })
+            .then(function (response) {
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro ao inativar: ${error.message}`
+                );
+            });
     }
 </script>
 

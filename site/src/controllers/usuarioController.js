@@ -43,6 +43,37 @@ function listarNome(req, res) {
         );
 }
 
+function listarPorID(req, res) {
+    var id = req.params.id;
+    usuarioModel.listarPorID(id)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function inativar(req, res) {
+    var escolhaInativo = req.params.escolhaInativo;
+    usuarioModel.inativar(escolhaInativo)
+        .then(function (resultado) {
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao inativar: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function entrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -161,6 +192,47 @@ function cadastrarFuncionario(req, res) {
     }
 }
 
+function atualizarFuncionario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var telefone = req.body.telefoneServer;
+    var id = req.body.idServer;
+
+    console.log("AQUI O ID TA: "+id);
+
+
+    // Faça as validações dos valores
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Seu telefone está undefined!");    
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.atualizarFuncionario(id,nome,email, senha, telefone)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function cadastrar_empresa(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var cnpj = req.body.cnpjServer;
@@ -208,5 +280,8 @@ module.exports = {
     cadastrar_empresa,
     listar,
     listarNome,
-    testar
+    listarPorID,
+    testar,
+    inativar,
+    atualizarFuncionario
 }
