@@ -133,52 +133,86 @@
     </div>
     <div class="main">
 
-            <div class="container">
-                <div class="container_header">
-                    <div class="header_title">Totem |ID </div>
-                    <div class="infos">
-                        <div class="left_side">
-                            <div class="info">
-                                <div class="title">Processador:</div>
-                                <div class="subtitulo">Intel(R) Core (TM) i5-1035G1 CPU @ 1.00GHz</div>
-                            </div>
-                            <div class="info">
-                                <div class="title">Armazenamento:</div>
-                                <div class="subtitulo">238,5 GiB</div>
-                            </div>
-                            <div class="info">
-                                <div class="title">Sistema Operacional:</div>
-                                <div class="subtitulo">Ubuntu</div>
-                            </div>
+        <div class="container">
+            <div class="container_header">
+                <div class="header_title">Totem |ID </div>
+                <div class="infos">
+                    <div class="left_side">
+                        <div class="info">
+                            <div class="title">Processador:</div>
+                            <div class="subtitulo">Intel(R) Core (TM) i5-1035G1 CPU @ 1.00GHz</div>
                         </div>
-                        <div class="right_side">
-                            <img src="../resources/img/relogio.png" alt="">
-                            <div class="text">TEMPO ATIVIDADE</div>
-                            <div class="text">2022-10-13T20:46:58Z</div>
+                        <div class="info">
+                            <div class="title">Armazenamento:</div>
+                            <div class="subtitulo">238,5 GiB</div>
+                        </div>
+                        <div class="info">
+                            <div class="title">Sistema Operacional:</div>
+                            <div class="subtitulo">Ubuntu</div>
                         </div>
                     </div>
-                </div>
-                <div class="graficos">
-                    <div class="temperatura">
-                        <div class="title">Temperatura do totem</div>
-                        <canvas id="myChart"></canvas>
-                    </div>
-
-                    <div class="memoria">
-                        <div class="title">Memória RAM</div>
-                        <canvas id="myMemoria"></canvas>
-                    </div>
-
-                    <div class="processos">
-                        <img src="../resources/img/mapa-do-site.png" alt="">
-                        <div class="title">200 Processos ativos</div>
+                    <div class="right_side">
+                        <img src="../resources/img/relogio.png" alt="">
+                        <div class="text">TEMPO ATIVIDADE</div>
+                        <div class="text">2022-10-13T20:46:58Z</div>
                     </div>
                 </div>
             </div>
+            <div class="graficos">
+                <div class="temperatura">
+                    <div class="title">Temperatura do totem</div>
+                    <canvas id="myChart"></canvas>
+                </div>
+
+                <div class="memoria">
+                    <div class="title">Memória RAM</div>
+                    <p id="memoria"></p>
+                    <canvas id="myMemoria"></canvas>
+                </div>
+
+                <div class="processos">
+                    <img src="../resources/img/mapa-do-site.png" alt="">
+                    <div class="title">200 Processos ativos</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
 </html>
+
+<script>
+    window.onload = obterDadosGrafico(1);
+
+    function obterDadosGrafico(idMaquina) {
+        console.log("Entrou aqui 1");
+        fetch(`/medidas/ultimas/${idMaquina}`, { cache: "no-store" })
+            .then(function (response) {
+                console.log("Entrou aqui 2");
+                if (response.status == 200) {
+                    console.log("Entrou aqui 3");
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                        }
+
+                        console.log("TESTANDO " + registro.usoMemoria);
+                        memoria.innerHTML = registro.usoMemoria;
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+</script>
 
 
 <script>
@@ -210,27 +244,27 @@
     };
 
 
-const dataTwo = {
-  labels: [
-    'Em uso',
-    'Disponível'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [6.8, 2.2],
-    backgroundColor: [
-      'rgb(82,41,82)',
-      'rgb(54, 162, 235)'
-    ],
-    hoverOffset: 4
-  }]
-};
+    const dataTwo = {
+        labels: [
+            'Em uso',
+            'Disponível'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [6.8, 2.2],
+            backgroundColor: [
+                'rgb(82,41,82)',
+                'rgb(54, 162, 235)'
+            ],
+            hoverOffset: 4
+        }]
+    };
 
 
-const configTwo = {
-  type: 'doughnut',
-  data: dataTwo,
-};
+    const configTwo = {
+        type: 'doughnut',
+        data: dataTwo,
+    };
 
 </script>
 
@@ -247,6 +281,7 @@ const configTwo = {
 </script>
 
 <script src="../resources/js/bot.js"></script>
+
 
 <script>
     function sair() {

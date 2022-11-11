@@ -8,122 +8,99 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';
 }
 
-.graficos_left{
-    display: flex;
-    width: 400px;
-    flex-direction: column;
-}
-
-
-.graficos_right{
-    margin-left: 150px;
-    width: 200px;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
 .main{
-    width: 70%;
+    width: 85%;
     margin-left: 100px;
-    padding: 40px 0px 0px 70px;
+    padding: 70px 0px 70px 70px;
     display: flex;
 }
 
-.title{
-    font-size: 30px;
-    color: var(--cor-principal);
-    font-weight: bold;
+.left_side{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
 }
 
-.header .subtitle{
-    font-size: 25px;
-    color: var(--cor-principal);
-}
-
-
-
-.red{
-    color: #FF0404;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.yellow{
-    font-weight: bold;
-    color: #FFDA47;
-    margin-top: 20px;
-}
-
-.green{
-    font-weight: bold;
-    color: #5EFF47;
-    margin-top: 20px;
-}
-
-.barraNormal{
-    width: 300px;
-    height: 10px;
-    background-color: #5EFF47;
-    border-radius: 20px;
-}
-
-.barraAtencao{
-    width: 200px;
-    height: 10px;
-    background-color: #FFDA47;
-    border-radius: 20px;
-}
-
-.barraEmergencia{
-    width: 100px;
-    height: 10px;
-    background-color: #FF0404;
-    border-radius: 20px;
-}
-#myBar{
-    width: 100%;
-}
-
-
-#myChart{
-    height: 250px;
-}
-
-.pizza{
-    width: 300px;
-    box-shadow: 0px 3px 6px rgb(221, 221, 221);
+.right_side{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    box-shadow: 0px 2px 5px rgb(180, 180, 180);
     background-color: white;
-    padding: 20px;
     border-radius: 20px;
+    align-items: center;
+}
+
+.left_side .card{
+    width: 600px;
+    height: 110px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgb(180, 180, 180);
+    color: #522952;
+    background-color: white;
+    display: flex;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.card .text_side{
+    width: 350px;
+}
+
+.card .tituloCard{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.card .textoCard{
+    font-size: 19px;
+    margin-top: 10px;
+}
+
+.card img{
+    width: 200px;
+    height: 200px;
+    margin-top: -80px;
+}
+
+.tituloGrafico{
+    font-size: 20px;
+    color: #522952;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+
+}
+
+.week{
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.left_side .grafico_produtividade{
+    width: 700px;
+}
+
+.right_side .titulo{
+    font-size: 20px;
+    color: #522952;
+}
+
+.graficoRisco{
+    font-size: 20px;
     margin-top: 50px;
 }
 
-.pizza .title{
-    font-size: 19px;
-    margin-left: 15px;
-}
-
-.incidentes{
-    box-shadow: 0px 3px 6px rgb(221, 221, 221);
-    background-color: white;
-    padding: 20px;
-    border-radius: 20px;
-    width: 430px;
-}
-
-.incidentes .title{
-    font-size: 19px;
-    
-}
-
-.temperatura{
-    padding: 20px;
-    border-radius: 20px;
-    width: 430px;
-}
-
-.temperatura .title{
-    font-size: 19px;
+.btn{
+    background-color: #522952;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 60px;
 }

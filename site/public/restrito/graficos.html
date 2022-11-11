@@ -129,33 +129,31 @@
 
         </div>
     </div>
+
     <div class="main">
-        <div class="graficos_left">
-            <div class="header">
-                <div class="title">Gráficos</div>
-                <div class="subtitle">Análise de dados dos totens | HOJE</div>
+        <div class="left_side">
+            <div class="card">
+                <div class="text_side">
+                    <div class="tituloCard">Aqui é sua melhor área de análise</div>
+                    <div class="textoCard">Analise os gráficos e ajude o mercado a tomar decisões</div>
+                </div>
+
+                <img src="../resources/img/analize.png" alt="">
             </div>
-            <div class="pizza">
-                <div class="title">Situação dos totens</div>
-                <canvas id="myPizza"></canvas>
+
+            <div class="grafico_produtividade">
+                <div class="tituloGrafico"><b>Produtividade das máquinas |</b> <div class="week">Nessa semana</div></div>
+                <canvas id="graficoProdutividade"></canvas>
             </div>
         </div>
-
-        <div class="graficos_right">
-            <div class="incidentes">
-                <div class="title">Incidentes hoje</div>
-                <canvas id="myBar"></canvas>
+        <div class="right_side">
+            <div class="titulo">
+                <b>Riscos de incidentes |</b> Hoje
+                <div class="graficoRisco">
+                    <canvas id="graficoRisco"></canvas>
+                </div>
             </div>
-            <div class="temperatura">
-                <div class="title">Frequência de alertas</div>
-
-                <div class="green">Normal</div>
-                <div class="barraNormal"></div>
-                <div class="yellow">Atenção</div>
-                <div class="barraAtencao"></div>
-                <div class="red">Emergência</div>
-                <div class="barraEmergencia"></div>
-            </div>
+            <a href="Totens.html"><div class="btn">Ver máquinas</div></a>
         </div>
     </div>
 </body>
@@ -163,110 +161,10 @@
 </html>
 
 
-<script>
-    const labels = [
-        '09h',
-        '11h',
-        '13h',
-        '15h',
-        '17h',
-        '19h',
-        '21h',
-        '23h',
-    ];
 
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'Normal',
-            backgroundColor: 'rgb(82,41,82)',
-            borderColor: 'rgb(87,48,87)',
-            data: [19, 21, 20, 22, 25, 28, 35, 25],
-        },
-        {
-            label: 'Atenção',
-            backgroundColor: 'rgb(161,117,161)',
-            borderColor: 'rgb(161,117,161)',
-            data: [18, 18, 19, 19, 20, 25, 30, 20],
-        }]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-
-
-
-
-
-    const dataTwo = {
-        labels: [
-            'Operantes',
-            'Inoperantes'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [2, 1],
-            backgroundColor: [
-                'rgb(82,41,82)',
-                'rgb(161,117,161)'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    const configTwo = {
-        type: 'pie',
-        data: dataTwo,
-    };
-
-
-    const dataa = {
-        labels: labels,
-        datasets: [{
-            label: 'Incidentes hoje',
-            data: [0, 0, 0, 1, 1, 0, 2, 1],
-            backgroundColor: [
-                'rgba(82,41,82)'
-            ],
-            borderColor: [
-                'rgb(82,41,82)',
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    const configg = {
-        type: 'bar',
-        data: dataa,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        },
-    };
-
-</script>
-
-<script>
-    
-
-    const myPizza = new Chart(
-        document.getElementById('myPizza'),
-        configTwo
-    );
-
-    const myBar = new Chart(
-        document.getElementById('myBar'),
-        configg
-    );
-</script>
 
 <script src="../resources/js/bot.js"></script>
+<script src="../resources/js/graficos.js"></script>
 
 <script>
     function sair() {

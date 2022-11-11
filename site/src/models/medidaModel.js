@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idMaquina, limite_linhas) {
 
     instrucaoSql = ''
 
@@ -13,12 +13,7 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     where fkSensor = 1
                     order by data desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-                        state as chave,
-                       hora as momento_grafico
-                    from dados
-                    where fkSensor = 1
-                    order by hora desc limit ${limite_linhas}`;
+        instrucaoSql = `select usoMemoria from DadosTotem`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
