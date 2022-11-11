@@ -54,6 +54,7 @@ body{
 
 .busca img{
     width: 50px;
+    cursor: pointer;
 }
 
 .btn{

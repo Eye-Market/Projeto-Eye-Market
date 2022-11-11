@@ -119,34 +119,34 @@
 
             <div class="main_cadastro">
                 <div class="label">Nome completo:</div>
-                <input class="inptInteiro" type="text">
+                <input id="iptNome" class="inptInteiro" type="text">
 
                 <div class="label">E-mail:</div>
-                <input class="inptInteiro" type="text">
+                <input id="iptEmail" class="inptInteiro" type="text">
 
                 <div class="label">Telefone:</div>
-                <input class="inptInteiro" type="text">
+                <input id="iptTelefone" class="inptInteiro" type="text">
 
                 <div class="label">Cargo:</div>
-                <select name="" id="">
-                    <option value="">Supervisor</option>
-                    <option value="">Técnico</option>
+                <select name="" id="scargo">
+                    <option value="supervisor">Supervisor</option>
+                    <option value="tecnico">Técnico</option>
                 </select>
 
                 <div class="passwords">
                     <div class="password">
                         <div class="label">Senha:</div>
-                        <input class="inptMeio" type="password">
+                        <input id="iptSenha" class="inptMeio" type="password">
                     </div>
                     <div class="password">
                         <div class="label">Repita a senha:</div>
-                        <input class="inptMeio" type="password">
+                        <input id="iptSenhaConfirmar" class="inptMeio" type="password">
                     </div>
                 </div>
 
                 <div class="btns">
                     <button class="cancelar" onclick="cancelarCadastro()">Cancelar</button>
-                    <button class="cadastrar">Cadastrar</button>
+                    <button class="cadastrar" onclick="cadastrarFuncionario()">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -200,8 +200,8 @@
 
         <div class="search">
             <div class="busca">
-                <input placeholder="Buscar funcionários..." type="text">
-                <img src="../resources/img/lupa.png">
+                <input id="iptBusca" placeholder="Buscar funcionários..." type="text">
+                <img src="../resources/img/lupa.png" onclick="buscarFuncionarioPorNome()">
             </div>
             <div class="btn" onclick="abrirCadastrar()">
                 <img src="../resources/img/adicionar-contato.png">
@@ -209,9 +209,15 @@
         </div>
 
         <div class="filtro">
-            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Técnico')"><div class="opc_atv" id="tecnico">Visualizar apenas Técnicos</div></button>
-            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Supervisor')"><div class="opc" id="supervisor">Visualizar apenas Supervisores</div></button>
-            <button class="escolhaFuncionario" onclick="buscarFuncionarios('todos')"><div class="opc" id="todos">Visualizar todos</div></button>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Técnico')">
+                <div class="opc_atv" id="tecnico">Visualizar apenas Técnicos</div>
+            </button>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Supervisor')">
+                <div class="opc" id="supervisor">Visualizar apenas Supervisores</div>
+            </button>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('todos')">
+                <div class="opc" id="todos">Visualizar todos</div>
+            </button>
         </div>
 
         <table id="funcionarios">
@@ -230,18 +236,18 @@
 
 <script>
 
-   window.onload = buscarFuncionarios('todos');
+    window.onload = buscarFuncionarios('todos');
 
     function buscarFuncionarios(cargo) {
-        if(cargo == 'Técnico'){
+        if (cargo == 'Técnico') {
             tecnico.style.fontWeight = 'bold';
             supervisor.style.fontWeight = 'normal';
             todos.style.fontWeight = 'normal';
-        }else if(cargo == 'Supervisor'){
+        } else if (cargo == 'Supervisor') {
             supervisor.style.fontWeight = 'bold';
             tecnico.style.fontWeight = 'normal';
             todos.style.fontWeight = 'normal';
-        }else{
+        } else {
             todos.style.fontWeight = 'bold';
             tecnico.style.fontWeight = 'normal';
             supervisor.style.fontWeight = 'normal';
@@ -272,6 +278,129 @@
                     `Erro na obtenção dos dados p/ gráfico: ${error.message}`
                 );
             });
+    }
+
+    function buscarFuncionarioPorNome(){
+        var nome = iptBusca.value;
+        if(nome == ""){
+            buscarFuncionarios('todos');
+        }
+        tecnico.style.fontWeight = 'normal';
+        todos.style.fontWeight = 'normal';
+        supervisor.style.fontWeight = 'normal';
+        fetch(`/usuarios/listarNome/${nome}`, { cache: "no-store" })
+            .then(function (response) {
+                console.log("Entrou aqui 2");
+                if (response.status == 200) {
+                    console.log("Entrou aqui 3");
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo()' /></td> </tr>`;
+
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+</script>
+
+
+<script>
+    function cadastrarFuncionario() {
+        var nomeVar = iptNome.value;
+
+        var select = document.getElementById("scargo");
+        var opcaoTexto = select.options[select.selectedIndex].text;
+
+        var emailVar = iptEmail.value;
+        var telefoneVar = iptTelefone.value;
+        var senhaVar = iptSenha.value;
+        var confirmacaoSenhaVar = iptSenhaConfirmar.value;
+
+
+        console.log(nomeVar, opcaoTexto, emailVar, telefoneVar, senhaVar);
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+
+            alert("Preencha todos os campos para prosseguir!");
+            return false;
+        }
+
+        // Nome numérico
+        var nome = Number(nomeVar);
+
+        if (!isNaN(nome)) {
+
+            // alert("Nome não pode ser numérico, digite seu nome novamente");
+            alert("Nome não pode ser numérico");
+
+            return false;
+        }
+
+        if (senhaVar.length < 4) {
+
+            alert("Senha deve conter no mínimo 4 caracteres");
+            return false;
+        }
+
+        // Email com @ e .com
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+
+            alert("E-mail inválido");
+
+            return false;
+        }
+
+        // Campo confirmacaoSenha igual ao de senha
+        if (senhaVar != confirmacaoSenhaVar) {
+
+            alert("As senhas não são iguais");
+
+            return false;
+        }
+
+        fetch("/usuarios/cadastrarFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                cargoServer: opcaoTexto,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                telefoneServer: telefoneVar
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cancelarCadastro();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+
     }
 </script>
 
