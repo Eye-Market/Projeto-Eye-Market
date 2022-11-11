@@ -209,59 +209,71 @@
         </div>
 
         <div class="filtro">
-            <div class="opc_atv">Visualizar apenas Técnicos</div>
-            <div class="opc">Visualizar apenas Supervisores</div>
-            <div class="opc">Visualizar todos</div>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Técnico')"><div class="opc_atv" id="tecnico">Visualizar apenas Técnicos</div></button>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('Supervisor')"><div class="opc" id="supervisor">Visualizar apenas Supervisores</div></button>
+            <button class="escolhaFuncionario" onclick="buscarFuncionarios('todos')"><div class="opc" id="todos">Visualizar todos</div></button>
         </div>
 
-        <table>
-            <tr class="titulo">
+        <table id="funcionarios">
+            <tr class='titulo'>
                 <th>Cargo</th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Editar</th>
                 <th>Inativar</th>
             </tr>
-            <tr>
-                <td class="cargo">Técnico</td>
-                <td>Carlos Alberto</td>
-                <td>(11) 966325595</td>
-                <td><a href="updateFuncionario.html"><img src="../resources/img/editar-texto.png" /></a></td>
-                <td><img src="../resources/img/desativado.png" onclick="abrirInativo()" /></td>
-            </tr>
-            <tr>
-                <td class="cargo">Técnico</td>
-                <td>Livia Oliveira</td>
-                <td>(11) 966325595</td>
-                <td><img src="../resources/img/editar-texto.png" /></td>
-                <td><img src="../resources/img/desativado.png" /></td>
-            </tr>
-            <tr>
-                <td class="cargo">Técnico</td>
-                <td>Rafaela Martins</td>
-                <td>(11) 966325595</td>
-                <td><img src="../resources/img/editar-texto.png" /></td>
-                <td><img src="../resources/img/desativado.png" /></td>
-            </tr>
-            <tr>
-                <td class="cargo">Técnico</td>
-                <td>Silvia Andrade</td>
-                <td>(11) 966325595</td>
-                <td><img src="../resources/img/editar-texto.png" /></td>
-                <td><img src="../resources/img/desativado.png" /></td>
-            </tr>
-            <tr>
-                <td class="cargo">Técnico</td>
-                <td>Marcio Silva</td>
-                <td>(11) 966325595</td>
-                <td><img src="../resources/img/editar-texto.png" /></td>
-                <td><img src="../resources/img/desativado.png" /></td>
-            </tr>
         </table>
     </div>
 </body>
 
 </html>
+
+<script>
+
+   window.onload = buscarFuncionarios('todos');
+
+    function buscarFuncionarios(cargo) {
+        if(cargo == 'Técnico'){
+            tecnico.style.fontWeight = 'bold';
+            supervisor.style.fontWeight = 'normal';
+            todos.style.fontWeight = 'normal';
+        }else if(cargo == 'Supervisor'){
+            supervisor.style.fontWeight = 'bold';
+            tecnico.style.fontWeight = 'normal';
+            todos.style.fontWeight = 'normal';
+        }else{
+            todos.style.fontWeight = 'bold';
+            tecnico.style.fontWeight = 'normal';
+            supervisor.style.fontWeight = 'normal';
+        }
+        console.log("Entrou aqui 1");
+        fetch(`/usuarios/listar/${cargo}`, { cache: "no-store" })
+            .then(function (response) {
+                console.log("Entrou aqui 2");
+                if (response.status == 200) {
+                    console.log("Entrou aqui 3");
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo()' /></td> </tr>`;
+
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+</script>
 
 <script>
     function abrirCadastrar() {
@@ -282,6 +294,8 @@
 </script>
 
 <script src="../resources/js/bot.js"></script>
+
+
 
 <script>
     function sair() {

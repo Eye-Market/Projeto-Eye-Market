@@ -370,6 +370,11 @@ table {
     border-radius: 10px;
   }
 
+  .escolhaFuncionario{
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
 
   /* Animação */
