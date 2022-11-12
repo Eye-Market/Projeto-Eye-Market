@@ -187,80 +187,15 @@
 
         <div class="search">
             <div class="busca">
-                <input placeholder="Buscar Totem por id..." type="text">
-                <img src="../resources/img/lupa.png">
+                <input id="iptBusca" placeholder="Buscar Totem por id..." type="number">
+                <img onclick="listarTotens(iptBusca.value != ''? iptBusca.value : 'todos')" src="../resources/img/lupa.png">
             </div>
             <div class="btn" onclick="abrirCadastrar()">
                 +
             </div>
         </div>
 
-        <div class="cards">
-            <a href="graficosIndividuais.html">
-                <div class="card">
-                    <div class="card_left">
-                        <div class="card_title"><b>Totem |</b> ID</div>
-                        <div class="ficha">ficha técnica</div>
-                    </div>
-                    <img src="../resources/img/cuidado.png" alt="">
-                </div>
-            </a>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img src="../resources/img/cuidado.png" alt="">
-            </div>
-
-            <div class="card">
-                <div class="card_left">
-                    <div class="card_title"><b>Totem |</b> ID</div>
-                    <div class="ficha">ficha técnica</div>
-                </div>
-                <img id="verificar" src="../resources/img/verificar.png">
-            </div>
+        <div class="cards" id="cards">
         </div>
 
 
@@ -271,6 +206,56 @@
 </html>
 
 <script>
+
+    listarTotens('todos');
+
+    var tudoCerto = '../resources/img/verificar.png';
+    var algoErrado = '../resources/img/cuidado.png';
+
+    function listarTotens(detalhe) {
+        console.log("Vamos listar os totens...");
+        fetch(`/totens/listarTotens/${detalhe}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        cards.innerHTML = "";
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            if(registro.isLigado){
+                               var status = tudoCerto;
+                            }else{
+                                var status = algoErrado;
+                            }
+                            // funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
+                            cards.innerHTML += `
+                            <a href="graficosIndividuais.html?id=${registro.IDTotem}">
+                            <div class="card">
+                                 <div class="card_left">
+                                 <div class="card_title"><b>Totem |</b> ${registro.IDTotem}</div>
+                                 <div class="ficha">${registro.isLigado == 1? "Ligado" : "Desligado"}</div>
+                            </div>
+                            <img src="${status}" alt="">
+                            </div>
+                            </a>
+                            `;
+
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+
     function abrirCadastrar() {
         cadastro.style.display = 'flex';
     }

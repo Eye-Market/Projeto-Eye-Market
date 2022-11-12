@@ -48,17 +48,6 @@ const graficoProdutividade = new Chart(
     datasets: [{
       label: 'My First Dataset',
       data: [300, 50, 100],
-      options: {
-        plugins:{
-            legend:{
-                labels:{
-                    font:{
-                        size: 20
-                    }
-                }
-            }
-        }
-      },
       backgroundColor: [
         '#FF0404',
         '#FFDA47',
