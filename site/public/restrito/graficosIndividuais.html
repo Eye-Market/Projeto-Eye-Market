@@ -110,13 +110,13 @@
             <div class="icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
         </a>
         <div class="mid">
-            <a href="funcionarios.html">
+            <a id="funcionariosIcone" href="funcionarios.html">
                 <div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
             </a>
             <a href="graficos.html">
                 <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
             </a>
-            <a href="calendario.html">
+            <a id="calendar" href="calendario.html">
                 <div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
             </a>
             <a href="Totens.html">
@@ -154,7 +154,7 @@
                     <div class="right_side">
                         <img src="../resources/img/relogio.png" alt="">
                         <div class="text">TEMPO ATIVIDADE</div>
-                        <div class="text">2022-10-13T20:46:58Z</div>
+                        <div class="text"><b id="atividade"></b> segundos</div>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
 
                 <div class="processos">
                     <img src="../resources/img/mapa-do-site.png" alt="">
-                    <div class="title">200 Processos ativos</div>
+                    <div class="title"><b id="processos">0</b> Processos ativos</div>
                 </div>
             </div>
         </div>
@@ -183,9 +183,28 @@
 </html>
 
 <script>
+    function queryString(parameter) {  
+              var loc = location.search.substring(1, location.search.length);   
+              var param_value = false;   
+              var params = loc.split("&");   
+              for (i=0; i<params.length;i++) {   
+                  param_name = params[i].substring(0,params[i].indexOf('='));   
+                  if (param_name == parameter) {                                          
+                      param_value = params[i].substring(params[i].indexOf('=')+1)   
+                  }   
+              }   
+              if (param_value) {   
+                  return param_value;   
+              }   
+              else {   
+                  return undefined;   
+              }   
+        }
+
+    var id = queryString("id");
     let proximaAtualizacao;
 
-    window.onload = obterDadosGrafico(1);
+    window.onload = obterDadosGrafico(id);
 
     function obterDadosGrafico(idMaquina) {
         // alterarTitulo(idAquario)
@@ -243,6 +262,8 @@
             // labels.push(registro.momento_grafico);
             console.log("FEIJAO "+ registro.usoMemoriaDisponivel);
             console.log("FEIJAO "+ registro.usoMemoria);
+            processos.innerHTML = registro.QtdProcessos;
+            atividade.innerHTML = registro.Atividade;
             // uso.innerHTML = `Aqui to no primeiro: disponivel: ${registro.usoMemoriaDisponivel} uso: ${registro.usoMemoria}`;
             dados.datasets[0].data.push = registro.usoMemoriaDisponivel,registro.usoMemoria;
         }
@@ -395,3 +416,5 @@ fetch(`/medidas/tempo-real/${idMaquina}`, { cache: 'no-store' }).then(function (
         window.location.replace('../index.html');
     }
 </script>
+
+<script src="../resources/js/controleAcesso.js"></script>

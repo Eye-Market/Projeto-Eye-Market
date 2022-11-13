@@ -35,6 +35,16 @@ function listarPorID(id) {
     return database.executar(instrucao);
 }
 
+function pegarCargo(email) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+
+    var instrucao = `
+        SELECT Cargo FROM usuario WHERE Email = '${email}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function inativar(escolhaInativo) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
@@ -121,5 +131,6 @@ module.exports = {
     listarNome,
     listarPorID,
     inativar,
-    atualizarFuncionario
+    atualizarFuncionario,
+    pegarCargo
 };

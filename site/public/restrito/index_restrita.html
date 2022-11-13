@@ -172,9 +172,9 @@
     <div class="menu_dash">
         <div class="atv_icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png"/></div>
         <div class="mid">
-            <a href="funcionarios.html"><div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png"/></div></a>
+            <a id="funcionariosIcone" href="funcionarios.html"><div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png"/></div></a>
             <a href="graficos.html"><div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png"/></div></a>
-            <a href="calendario.html"><div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png"/></div></a>
+            <a id="calendar" href="calendario.html"><div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png"/></div></a>
             <a href="Totens.html"><div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png"/></div></a>
         </div>
         <div class="bot">
@@ -188,7 +188,7 @@
         <div class="header">
             <div>
                 <div class="title">Olá, usuário.</div>
-            <div class="subtitle">Você está logado como gestor</div>
+            <div class="subtitle" id="cargoF">Você está logado como </div>
             </div>
 
             <div class="hint_text" onclick="abrirTutorial()">Como pegamos os incidentes?</div>
@@ -289,6 +289,8 @@
 <script src="../resources/js/bot.js"></script>
 
 <script>
+    cargoF.innerHTML += sessionStorage.CARGO;
+
     function sair(){
          sessionStorage.clear();
          window.location.replace('../index.html');
@@ -331,3 +333,5 @@
         pergunta.style.display = "block";
      }
  </script>
+
+<script src="../resources/js/controleAcesso.js"></script>

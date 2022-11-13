@@ -61,6 +61,24 @@ function listarPorID(req, res) {
         );
 }
 
+function pegarCargo(req, res) {
+    var email = req.params.email;
+    usuarioModel.pegarCargo(email)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function inativar(req, res) {
     var escolhaInativo = req.params.escolhaInativo;
     usuarioModel.inativar(escolhaInativo)
@@ -283,5 +301,6 @@ module.exports = {
     listarPorID,
     testar,
     inativar,
-    atualizarFuncionario
+    atualizarFuncionario,
+    pegarCargo
 }

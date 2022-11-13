@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function buscarUltimasMedidas(idMaquina, limite_linhas) {
 
-    instrucaoSql = `select usoMemoria, usoMemoriaDisponivel from DadosTotem`;
+    instrucaoSql = `select usoMemoria, usoMemoriaDisponivel, QtdProcessos, Atividade from DadosTotem WHERE FKTotemid = ${idMaquina}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

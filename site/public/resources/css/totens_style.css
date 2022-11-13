@@ -405,6 +405,13 @@ table {
     height: 60px;
   }
 
+  .mensagem{
+    font-size: 20px;
+    margin-left: 50px;
+    margin-top: 70px;
+    color: rgb(124, 124, 124);
+  }
+
 
 
   /* Animação */

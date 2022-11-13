@@ -7,6 +7,10 @@ router.get("/", function (req, res) {
     usuarioController.testar(req, res);
 });
 
+router.get("/pegarCargo/:email", function (req, res) {
+    usuarioController.pegarCargo(req, res);
+});
+
 router.get("/listar/:cargo", function (req, res) {
     usuarioController.listar(req, res);
 });
