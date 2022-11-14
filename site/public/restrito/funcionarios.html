@@ -266,7 +266,7 @@
                         funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
-                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.cargo}</td> <td>${registro.nomeCompleto}</td> <td>${registro.telefone}</td> <td><a href='updateFuncionario.html?id=${registro.idUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.idUsuario})' /></td> </tr>`;
 
                         }
                         // plotarGrafico(resposta, idAquario);
@@ -301,7 +301,7 @@
                         funcionarios.innerHTML = "<tr class='titulo'> <th>Cargo</th> <th>Nome</th> <th>Telefone</th> <th>Editar</th> <th>Inativar</th> </tr>";
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
-                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
+                            funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.cargo}</td> <td>${registro.nomeCompleto}</td> <td>${registro.telefone}</td> <td><a href='updateFuncionario.html?id=${registro.idUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.idUsuario})' /></td> </tr>`;
 
                         }
                         // plotarGrafico(resposta, idAquario);

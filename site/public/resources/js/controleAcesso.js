@@ -8,7 +8,7 @@ function pegarCargo(email) {
                     for (i = 0; i < resposta.length; i++) {
                         var registro = resposta[i];
                         // cargoF.innerHTML += registro.Cargo;
-                        cargoFuncionario = registro.Cargo;
+                        cargoFuncionario = registro.cargo;
                         sessionStorage.CARGO = cargoFuncionario;
                     }
                     // plotarGrafico(resposta, idAquario);

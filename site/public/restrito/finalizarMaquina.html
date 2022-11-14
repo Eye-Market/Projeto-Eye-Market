@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/css/funcionarios_style.css">
+    <link rel="stylesheet" href="../resources/css/finalizarTotens_style.css">
     <link rel="stylesheet" href="../resources/css/menu_dash.css">
     <link rel="stylesheet" href="../resources/css/bot.css">
     <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
-    <title>Dashboard | Funcionários</title>
+    <title>Dashboard | Totens</title>
 </head>
 
 <body>
@@ -59,8 +59,8 @@
             <div class="escolha" id="escolha2" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-site.pdf">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html">
@@ -88,8 +88,8 @@
             <div class="escolha" id="escolha3" style="display: none;">
                 Escolha uma opção abaixo
 
-                <div class="opcao" onclick="opcao1()">
-                    &#128229; Baixar PDF
+                <div class="opcao">
+                    &#128229; <a href="../resources/pdf/EMsuporte-totem.pdf">Baixar PDF</a>
                 </div>
 
                 <a href="helpdesk.html">
@@ -104,83 +104,131 @@
             </div>
         </div>
     </div>
+
     <div class="menu_dash">
         <a href="index_restrita.html">
             <div class="icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
         </a>
         <div class="mid">
-            <a href="funcionarios.html">
-                <div class="atv_icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
+            <a id="funcionariosIcone" href="funcionarios.html">
+                <div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
             </a>
             <a href="graficos.html">
                 <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
             </a>
-            <a href="calendario.html">
+            <a id="calendar" href="calendario.html">
                 <div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
             </a>
-            <a href="Totens.html">
-                <div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
-            </a>
+            <div class="atv_icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
         </div>
         <div class="bot">
             <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img
                     src="../resources/img/silhueta_apoio.png" /></div>
             <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" />
             </div>
-
         </div>
     </div>
 
     <div class="main">
-        <div class="header">
-            <div class="title" id="nome">...</div>
-            <div class="subtitle" id="descricao">...</div>
+        <img src="../resources/img/detetive.png" alt="">
+        <div class="container">
+            <div class="titulo">Identificamos uma máquina que possui o sistema operacional <b id="sistemaOp">Linux</b></div>
+            <div class="textoAjuda">Para completar o cadastro, insira a data que essa máquina foi instalada no seu mercado</div>
+            <input id="dataInstalacao" type="date">
+            <button onclick="finalizarCadastro()">Finalizar Cadastro</button>
         </div>
-
-        <div class="main_update">
-            <div class="row">
-                <div class="label">NOME COMPLETO:</div>
-                <input id="iptNome" type="text" value="">
-            </div>
-
-            <div class="row">
-                <div class="label">E-MAIL:</div>
-                <input id="iptEmail" type="text" value="">
-            </div>
-
-            <div class="row">
-                <div class="label">TELEFONE:</div>
-                <input id="iptTelefone" type="text" value="">
-            </div>
-
-            <div class="row">
-                <div class="label">SENHA:</div>
-                <input id="iptSenha" type="text" value="">
-            </div>
-
-            <div class="btns_upd">
-                <a href="funcionarios.html"><button class="cancelar_upd">CANCELAR</button></a>
-                <button class="editar" onclick="atualizarFuncionario()">EDITAR</button>
-            </div>
-        </div>
-
-
     </div>
 </body>
 
 </html>
 
-<script src="../resources/js/bot.js"></script>
-
 <script>
 
     var id = queryString("id");
-    console.log(id);
-    preencherInputs(id);
+    console.log("TESTANDO ID: "+id);
+    listarTotensIncompletos(id);
 
-    function sair() {
-        sessionStorage.clear();
-        window.location.replace('../index.html');
+    var tudoCerto = '../resources/img/verificar.png';
+    var algoErrado = '../resources/img/cuidado.png';
+
+    function listarTotensIncompletos(detalhe) {
+        console.log("Vamos listar os totens incompletos...");
+        fetch(`/totens/listarTotensIncompletos/${detalhe}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                    nenhumaMaquina.style.display = 'flex';
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+
+    function finalizarCadastroMaquina(idMaquina,dataInstalacao){
+        console.log(dataInstalacao);
+
+        fetch(`/totens/finalizarCadastroMaquina/${idMaquina}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                dataServer: dataInstalacao
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.location = 'Totens.html';
+            } else {
+                throw ("Houve um erro ao tentar realizar o update!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+
+        });
+     }
+
+
+    function abrirCadastrar() {
+        cadastro.style.display = 'flex';
+    }
+
+    function cancelarCadastro() {
+        cadastro.style.display = 'none';
+    }
+
+    function abrirInativo() {
+        inativar.style.display = 'flex'
+    }
+
+    function cancelarInativo() {
+        inativar.style.display = 'none'
+    }
+
+    function finalizarCadastro(){
+        if(dataInstalacao.value == '' || dataInstalacao.value == undefined){
+            alert("Por favor, insira uma data coerente");
+        }else{
+            finalizarCadastroMaquina(id,dataInstalacao.value);
+        }
     }
 
     function queryString(parameter) {  
@@ -200,115 +248,15 @@
                   return undefined;   
               }   
         }
-
-     function preencherInputs(id){
-        fetch(`/usuarios/listarPorID/${id}`, { cache: "no-store" })
-            .then(function (response) {
-                console.log("Entrou aqui 2");
-                if (response.status == 200) {
-                    console.log("Entrou aqui 3");
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        for (i = 0; i < resposta.length; i++) {
-                            var registro = resposta[i];
-                            console.log("Tudo certo");
-                            nome.innerHTML = registro.nomeCompleto;
-                            iptNome.value = registro.nomeCompleto;
-                            iptEmail.value = registro.email;
-                            iptTelefone.value = registro.telefone;
-                            iptSenha.value = registro.senha;
-
-                            if(registro.cargo == "Técnico"){
-                                descricao.innerHTML = "Técnico responsável pela manutenção dos Totens";
-                            }else if(registro.cargo == "Supervisor"){
-                                descricao.innerHTML = "Supervisor responsável pelo monitoramento de incidentes";
-                            }else{
-                                descricao.innerHTML = "Gestor responsável pelo controle geral dos totens";
-                            }
-
-                        }
-                        // plotarGrafico(resposta, idAquario);
-                    });
-                } else {
-                    console.error("Nenhum dado encontrado ou erro na API");
-                }
-            })
-            .catch(function (error) {
-                console.error(
-                    `Erro na obtenção dos dados: ${error.message}`
-                );
-            });
-     }
-
-
-     function atualizarFuncionario(){
-        var nomeVar = iptNome.value;
-        var emailVar = iptEmail.value;
-        var telefoneVar = iptTelefone.value;
-        var senhaVar = iptSenha.value;
-
-
-
-        if (nomeVar == "" || emailVar == "" || senhaVar == "") {
-
-            alert("Preencha todos os campos para prosseguir!");
-            return false;
-        }
-
-        // Nome numérico
-        var nome = Number(nomeVar);
-
-        if (!isNaN(nome)) {
-
-            // alert("Nome não pode ser numérico, digite seu nome novamente");
-            alert("Nome não pode ser numérico");
-
-            return false;
-        }
-
-        if (senhaVar.length < 4) {
-
-            alert("Senha deve conter no mínimo 4 caracteres");
-            return false;
-        }
-
-        // Email com @ e .com
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-
-            alert("E-mail inválido");
-
-            return false;
-        }
-
-
-
-        fetch(`/usuarios/atualizarFuncionario`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                telefoneServer: telefoneVar,
-                idServer: id
-
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.location = 'funcionarios.html';
-            } else {
-                throw ("Houve um erro ao tentar realizar o update!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-
-        });
-     }
 </script>
+
+<script src="../resources/js/bot.js"></script>
+
+<script>
+    function sair() {
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+</script>
+
+<script src="../resources/js/controleAcesso.js"></script>

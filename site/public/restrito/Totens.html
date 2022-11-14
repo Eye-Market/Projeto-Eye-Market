@@ -105,37 +105,9 @@
         </div>
     </div>
     <div id="cadastro" class="cadastro">
-        <div class="tela_cadastro">
-            <div class="header_cadastro">
-                <div class="cadastro_up">
-                    <div class="title">Cadastro totem</div>
-                    <div class="line"></div>
-                </div>
-
-                <div class="cadastro_down">
-                    <div class="text">Cadastre um novo totem no sistema</div>
-                </div>
-            </div>
-
-            <div class="main_cadastro">
-                <div class="label">Modelo:</div>
-                <input class="inptInteiro" type="text">
-
-                <div class="label">Qtd Armazenamento:</div>
-                <input class="inptInteiro" type="number">
-
-                <div class="label">Detalhe processador:</div>
-                <input class="inptInteiro" type="text">
-
-                <div class="label">Memória RAM:</div>
-                <input class="inptInteiro" type="number">
-
-
-                <div class="btns">
-                    <button class="cancelar" onclick="cancelarCadastro()">Cancelar</button>
-                    <button class="cadastrar">Cadastrar</button>
-                </div>
-            </div>
+        <div id="maquinas" class="tela_cadastro">
+            <div class="close" onclick="cancelarCadastro()">Fechar</div>
+            <div id="nenhumaMaquina">Nenhuma máquina detectada pelo sistema</div>
         </div>
     </div>
 
@@ -188,7 +160,8 @@
         <div class="search">
             <div class="busca">
                 <input id="iptBusca" placeholder="Buscar Totem por id..." type="number">
-                <img onclick="listarTotens(iptBusca.value != ''? iptBusca.value : 'todos')" src="../resources/img/lupa.png">
+                <img onclick="listarTotens(iptBusca.value != ''? iptBusca.value : 'todos')"
+                    src="../resources/img/lupa.png">
             </div>
             <div class="btn" onclick="abrirCadastrar()">
                 +
@@ -208,6 +181,7 @@
 <script>
 
     listarTotens('todos');
+    listarTotensIncompletos('todos');
 
     var tudoCerto = '../resources/img/verificar.png';
     var algoErrado = '../resources/img/cuidado.png';
@@ -223,18 +197,18 @@
 
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
-                            if(registro.isLigado){
-                               var status = tudoCerto;
-                            }else{
+                            if (registro.isLigado) {
+                                var status = tudoCerto;
+                            } else {
                                 var status = algoErrado;
                             }
                             // funcionarios.innerHTML += `<tr> <td class='cargo'>${registro.Cargo}</td> <td>${registro.NomeCompleto}</td> <td>${registro.Telefone}</td> <td><a href='updateFuncionario.html?id=${registro.IDUsuario}'><img src='../resources/img/editar-texto.png' /></a></td> <td><img src='../resources/img/desativado.png' onclick='abrirInativo(${registro.IDUsuario})' /></td> </tr>`;
                             cards.innerHTML += `
-                            <a href="graficosIndividuais.html?id=${registro.IDTotem}">
+                            <a href="graficosIndividuais.html?id=${registro.idTotem}">
                             <div class="card">
                                  <div class="card_left">
-                                 <div class="card_title"><b>Totem |</b> ${registro.IDTotem}</div>
-                                 <div class="ficha">${registro.isLigado == 1? "Ligado" : "Desligado"}</div>
+                                 <div class="card_title"><b>Totem |</b> ${registro.idTotem}</div>
+                                 <div class="ficha">${registro.isLigado == 1 ? "Ligado" : "Desligado"}</div>
                             </div>
                             <img src="${status}" alt="">
                             </div>
@@ -247,6 +221,50 @@
                 } else {
                     console.error("Nenhum dado encontrado ou erro na API");
                     cards.innerHTML = `<p class='mensagem'>Nenhuma máquina cadastrada ou em funcionamento</p>`
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+
+
+    function listarTotensIncompletos(detalhe) {
+        console.log("Vamos listar os totens incompletos...");
+        fetch(`/totens/listarTotensIncompletos/${detalhe}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            maquinas.innerHTML += `
+                            <div class="maquina">
+                <div class="infos">
+                    <b>Máquina detectada</b>
+                    <div>Sistema operacional ${registro.sistemaOperacional}</div>
+
+                    <br>
+
+                    <b>Finalize o cadastro da máquina</b>
+
+                    <br>
+
+                    <a href="finalizarMaquina.html?id=${registro.idTotem}"><button>Finalizar cadastro</button></a>
+                </div>
+                <div class="draw"><img src="../resources/img/dados-da-nuvem.png" alt=""></div>
+            </div>
+                            `;
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                    nenhumaMaquina.style.display = 'flex';
                 }
             })
             .catch(function (error) {
@@ -271,6 +289,9 @@
 
     function cancelarInativo() {
         inativar.style.display = 'none'
+    }
+
+    function finalizarCadastroMaquina(idMaquina){
     }
 </script>
 

@@ -19,7 +19,7 @@ function listarNome(nomee) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     var instrucao = `
-        SELECT * FROM usuario WHERE NomeCompleto like '%${nomee}%' and isAtivo = true;
+        SELECT * FROM usuario WHERE nomeCompleto like '%${nomee}%' and isAtivo = true and cargo = 'Técnico' or nomeCompleto like '%${nomee}%' and isAtivo = true and cargo = 'Supervisor';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -29,7 +29,7 @@ function listarPorID(id) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     var instrucao = `
-        SELECT * FROM usuario WHERE IDUsuario = ${id};
+        SELECT * FROM usuario WHERE idUsuario = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,7 +39,7 @@ function pegarCargo(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     var instrucao = `
-        SELECT Cargo FROM usuario WHERE Email = '${email}';
+        SELECT cargo FROM Usuario WHERE email = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -49,7 +49,7 @@ function inativar(escolhaInativo) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     var instrucao = `
-    UPDATE Usuario SET isAtivo = false WHERE IDUsuario = ${escolhaInativo};
+    UPDATE Usuario SET isAtivo = false WHERE idUsuario = ${escolhaInativo};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -104,7 +104,7 @@ function atualizarFuncionario(id, nome, email, senha, telefone) {
     //  e na ordem de inserção dos dados.
 
     var instrucao = `
-    UPDATE Usuario set NomeCompleto = '${nome}' , Email = '${email}', Senha = '${senha}', Telefone = '${telefone}' WHERE IDUsuario = ${id};
+    UPDATE Usuario set nomeCompleto = '${nome}' , email = '${email}', senha = '${senha}', telefone = '${telefone}' WHERE idUsuario = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
