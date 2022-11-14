@@ -44,6 +44,40 @@ function listarTotensIncompletos(req, res) {
         );
 }
 
+function getTotensInoperantes(req, res) {
+    totensModel.getTotensInoperantes()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function getTotensOperantes(req, res) {
+    totensModel.getTotensOperantes()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function finalizarCadastroMaquina(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var dataInstalacao = req.body.dataServer;
@@ -73,5 +107,7 @@ module.exports = {
     testar,
     listarTotens,
     listarTotensIncompletos,
-    finalizarCadastroMaquina
+    finalizarCadastroMaquina,
+    getTotensInoperantes,
+    getTotensOperantes
 }

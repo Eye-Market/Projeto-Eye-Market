@@ -217,7 +217,7 @@
                     <div class="title_card">TOTENS INOPERANTES</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
-                <div class="number">1</div>
+                <div class="number" id="totalTotensInoperantes"></div>
                 <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
             </div>
             <div class="card">
@@ -226,7 +226,7 @@
                     <div class="title_card">TOTENS ATIVOS</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
-                <div class="number">2</div>
+                <div class="number" id="totalTotensOperantes"></div>
                 <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
             </div>
         </div>
@@ -290,6 +290,56 @@
 
 <script>
     cargoF.innerHTML += sessionStorage.CARGO;
+    getTotensInoperantes();
+    getTotensOperantes();
+
+    function getTotensInoperantes(){
+        console.log("Vamos listar os totens inoperantes...");
+        fetch(`/totens/getTotensInoperantes`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            totalTotensInoperantes.innerHTML = registro.total;
+                        }
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+    function getTotensOperantes(){
+        console.log("Vamos listar os totens inoperantes...");
+        fetch(`/totens/getTotensOperantes`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            totalTotensOperantes.innerHTML = registro.total;
+                        }
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
 
     function sair(){
          sessionStorage.clear();

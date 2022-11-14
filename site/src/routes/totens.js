@@ -12,6 +12,14 @@ router.get("/listarTotensIncompletos/:detalhe", function (req, res) {
     totensController.listarTotensIncompletos(req, res);
 })
 
+router.get("/getTotensInoperantes", function (req, res) {
+    totensController.getTotensInoperantes(req, res);
+})
+
+router.get("/getTotensOperantes", function (req, res) {
+    totensController.getTotensOperantes(req, res);
+})
+
 router.post("/finalizarCadastroMaquina/:idMaquina", function (req, res) {
     totensController.finalizarCadastroMaquina(req, res);
 })

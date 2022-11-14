@@ -1,5 +1,23 @@
 var database = require("../database/config")
 
+function getTotensInoperantes() {
+    console.log("ACESSEI O TOTENS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        var instrucao = `
+        SELECT COUNT(idTotem) as "total" FROM totem WHERE isLigado = false;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function getTotensOperantes() {
+    console.log("ACESSEI O TOTENS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        var instrucao = `
+        SELECT COUNT(idTotem) as "total" FROM totem WHERE isLigado = true;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarTotens(detalhe) {
     console.log("ACESSEI O TOTENS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
@@ -49,5 +67,7 @@ function finalizarCadastroMaquina(idMaquina,dataInstalacao) {
 module.exports = {
     listarTotens,
     listarTotensIncompletos,
-    finalizarCadastroMaquina
+    finalizarCadastroMaquina,
+    getTotensInoperantes,
+    getTotensOperantes
 };
