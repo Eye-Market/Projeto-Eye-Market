@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <div class="bot_help" id="bot_help">
         <div class="bot_header">
 
@@ -132,15 +133,18 @@
         </div>
     </div>
     <div class="main">
-
+        <div id="parou" class="parou">
+            <img src="../resources/img/triste (2).png" alt="">
+            Ops! A máquina está desligada.
+        </div>
         <div class="container">
             <div class="container_header">
-                <div class="header_title">Totem |ID </div>
+                <div class="header_title">Totem |<b id="idTotem"></b> </div>
                 <div class="infos">
                     <div class="left_side">
                         <div class="info">
                             <div class="title">Processador:</div>
-                            <div class="subtitulo">Intel(R) Core (TM) i5-1035G1 CPU @ 1.00GHz</div>
+                            <div class="subtitulo" id="processadorTotem">...</div>
                         </div>
                         <div class="info">
                             <div class="title">Armazenamento:</div>
@@ -148,7 +152,7 @@
                         </div>
                         <div class="info">
                             <div class="title">Sistema Operacional:</div>
-                            <div class="subtitulo">Ubuntu</div>
+                            <div class="subtitulo" id="soTotem">...</div>
                         </div>
                     </div>
                     <div class="right_side">
@@ -183,6 +187,7 @@
 </html>
 
 <script>
+    var isLigado;
     function queryString(parameter) {  
               var loc = location.search.substring(1, location.search.length);   
               var param_value = false;   
@@ -202,6 +207,8 @@
         }
 
     var id = queryString("id");
+    idTotem.innerHTML = id;
+    listarTotens(id);
     let proximaAtualizacao;
 
     window.onload = obterDadosGrafico(id);
@@ -220,6 +227,8 @@
                     resposta.reverse();
 
                     plotarGrafico(resposta, idMaquina);
+                   var registro = resposta[0];
+                   console.log(registro.tempoAtividade);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -262,8 +271,6 @@
             // labels.push(registro.momento_grafico);
             console.log("FEIJAO "+ registro.usoMemoriaDisponivel);
             console.log("FEIJAO "+ registro.usoMemoria);
-            processos.innerHTML = registro.QtdProcessos;
-            atividade.innerHTML = registro.Atividade;
             // uso.innerHTML = `Aqui to no primeiro: disponivel: ${registro.usoMemoriaDisponivel} uso: ${registro.usoMemoria}`;
             dados.datasets[0].data.push = registro.usoMemoriaDisponivel,registro.usoMemoria;
         }
@@ -316,23 +323,36 @@ fetch(`/medidas/tempo-real/${idMaquina}`, { cache: 'no-store' }).then(function (
                 // dados.labels.shift(); 
                 // dados.labels.push(novoRegistro[0].momento_grafico); 
 
-                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                console.log("DADO ANTERIOR: "+isLigado);
+                if(isLigado != novoRegistro[0].tempoAtividade){
+                    console.log("LIGOOOU");
+                    parou.style.display = 'none';
+                    isLigado = novoRegistro[0].tempoAtividade;
+                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                 console.log("CALMA "+ novoRegistro[0].usoMemoria,novoRegistro[0].usoMemoriaDisponivel);
-            // uso.innerHTML = `Aqui to no segundo: disponivel: ${novoRegistro[0].usoMemoriaDisponivel} uso: ${novoRegistro[0].usoMemoria}`;
 
             
                 dados.datasets[0].data = [novoRegistro[0].usoMemoriaDisponivel,novoRegistro[0].usoMemoria];
 
                 myMemoria.update();
+                atividade.innerHTML = novoRegistro[0].tempoAtividade;
+                processos.innerHTML = novoRegistro[0].qtdProcessos;
+                }else{
+                    console.log("TOTEM PAROU, ATENÇÃO, TOTEM PAROU");
+                    parou.style.display = 'flex';
+                    desligarTotem(novoRegistro[0].fkTotem);
+                    isLigado = novoRegistro[0].tempoAtividade;
+                }
+
             }
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idMaquina, dados, myMemoria), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idMaquina, dados, myMemoria), 5000);
         });
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarGrafico(idMaquina, dados, myPizza), 2000);
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idMaquina, dados, myMemoria), 5000);
     }
 })
     .catch(function (error) {
@@ -340,7 +360,84 @@ fetch(`/medidas/tempo-real/${idMaquina}`, { cache: 'no-store' }).then(function (
     });
 
 }
+
+function desligarTotem(idMaquina) {
+        console.log("Vamos listar os totens incompletos...");
+        fetch(`/totens/desligarTotem/${idMaquina}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                    nenhumaMaquina.style.display = 'flex';
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+        console.log("Vamos listar os totens incompletos...");
+        fetch(`/totens/ligarTotem/${idMaquina}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                    nenhumaMaquina.style.display = 'flex';
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    
+
+    function listarTotens(detalhe) {
+        console.log("Vamos listar os totens...");
+        fetch(`/totens/listarTotens/${detalhe}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            processadorTotem.innerHTML = registro.processador;
+                            soTotem.innerHTML = registro.sistemaOperacional;
+
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
 </script>
+
 
 
 <script>

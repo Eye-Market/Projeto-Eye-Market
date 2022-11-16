@@ -6,6 +6,23 @@
     padding: 40px 0px 0px 70px;
 }
 
+.parou{
+    height: 520px;
+    width: 1100px;
+    background-color: white;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.parou img{
+    width: 100px;
+}
+
 .container{
     width: 1100px;
     height: 520px;

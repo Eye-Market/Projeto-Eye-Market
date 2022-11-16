@@ -20,6 +20,14 @@ router.get("/getTotensOperantes", function (req, res) {
     totensController.getTotensOperantes(req, res);
 })
 
+router.get("/desligarTotem/:idMaquina", function (req, res) {
+    totensController.desligarTotem(req, res);
+})
+
+router.get("/ligarTotem/:idMaquina", function (req, res) {
+    totensController.ligarTotem(req, res);
+})
+
 router.post("/finalizarCadastroMaquina/:idMaquina", function (req, res) {
     totensController.finalizarCadastroMaquina(req, res);
 })
