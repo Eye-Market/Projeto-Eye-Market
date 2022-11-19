@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <title>Document</title>
 </head>
+
 <body>
-    <canvas id="myMemoria"></canvas>
-    <button onclick="testar()">testar</button>
+    <div id='calendar' style="margin-top: 50px; margin-left: 0px"></div>
 </body>
-</html>
-
 <script>
-    let labels = ['Em uso',
-            'Disponível'];
+    var lista = [];
 
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Risco',
-                data: [10,10],
-                backgroundColor: [
-                    'rgb(82,41,82)',
-                    'rgb(54, 162, 235)'
-                ],
-                hoverOffset: 4
-            }]
-        };
-
-    const configTwo = {
-        type: 'doughnut',
-        data: dados,
-    };
-
-    const myMemoria = new Chart(
-        document.getElementById('myMemoria'),
-        configTwo
-    );
-</script>
-
-
-<script>
-    function testar(){
-        console.log("Entrou");
-        dados.datasets[0].data.shift();
-        dados.datasets[0].data = [10,20];
-        myMemoria.update();
+    for(var i = 0; i < 2; i++){
+        lista.push({
+            title: 'Incidente',
+            start: `2022-11-19 13:00:00`,
+            constraint: 'businessHours',
+            color: '#FF0404'
+        });
     }
+
+    console.log(lista);
+
+    document.addEventListener('DOMContentLoaded', function() {
+            console.log("hm");
+            console.log(events);
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                initialDate: '2022-10-01',
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                editable: true,
+                selectable: true,
+                events
+            });
+            calendar.render();
+        });
 </script>
+
+<script src='../resources/lib/main.js'></script>

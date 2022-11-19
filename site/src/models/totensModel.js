@@ -27,16 +27,25 @@ function getIncidentesAtivos() {
     return database.executar(instrucao);
 }
 
+function getIncidentes() {
+    console.log("ACESSEI O TOTENS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        var instrucao = `
+        SELECT * FROM Incidentes;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarTotens(detalhe) {
     console.log("ACESSEI O TOTENS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     if (detalhe == 'todos') {
         var instrucao = `
-        SELECT idTotem, processador, sistemaOperacional, isLigado FROM Totem JOIN DadosTotem on idTotem = fkTotem WHERE idDadosTotem = (select max(idDadosTotem) from DadosTotem WHERE fkTotem = idTotem) and dataInstalacao != '0000-00-00';
+        SELECT idTotem, processador, sistemaOperacional, isLigado FROM Totem JOIN DadosTotem on idTotem = fkTotem WHERE idDadosTotem = (select max(idDadosTotem) from DadosTotem WHERE fkTotem = idTotem) and dataInstalacao != '0000-00-00' order by idTotem;
         `;
     } else {
         var instrucao = `
-        select idTotem, processador, sistemaOperacional, isLigado from Totem join DadosTotem on idTotem = fkTotem WHERE idDadosTotem = (select max(idDadosTotem) from DadosTotem WHERE fkTotem = ${detalhe}) and dataInstalacao != '0000-00-00';
+        select idTotem, processador, sistemaOperacional, isLigado from Totem join DadosTotem on idTotem = fkTotem WHERE idDadosTotem = (select max(idDadosTotem) from DadosTotem WHERE fkTotem = ${detalhe}) and dataInstalacao != '0000-00-00' order by idTotem;
     `;
     }
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -103,5 +112,6 @@ module.exports = {
     getTotensOperantes,
     desligarTotem,
     ligarTotem,
-    getIncidentesAtivos
+    getIncidentesAtivos,
+    getIncidentes
 };

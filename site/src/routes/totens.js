@@ -24,6 +24,10 @@ router.get("/getIncidentesAtivos", function (req, res) {
     totensController.getIncidentesAtivos(req, res);
 })
 
+router.get("/getIncidentes", function (req, res) {
+    totensController.getIncidentes(req, res);
+})
+
 router.get("/desligarTotem/:idMaquina", function (req, res) {
     totensController.desligarTotem(req, res);
 })
