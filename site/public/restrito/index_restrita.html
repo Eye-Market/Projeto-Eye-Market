@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link rel="icon" href="../resources/img/LogoEyeMarketFundoBranco.jpg">
     <title>Dashboard | Inicio</title>
 </head>
+
 <body>
 
     <div class="container_incidente" id="tutorialIncidente">
@@ -19,7 +21,8 @@
                 <div class="txt">
                     <b>Olá usuário.</b>
                     <br>
-                    Sou a EM, um bot da Eye Market, e vim te mostrar como funciona nosso processo para coletar incidentes das máquinas
+                    Sou a EM, um bot da Eye Market, e vim te mostrar como funciona nosso processo para coletar
+                    incidentes das máquinas
                 </div>
             </div>
 
@@ -32,11 +35,13 @@
 
             <div class="em" id="em3" style="display: none;">
                 <div class="txt">
-                    <b id="texto">Por algum motivo, seja de armazenamento ou não, ele teve uma parada repentina, ou seja, desligou</b>
+                    <b id="texto">Por algum motivo, seja de armazenamento ou não, ele teve uma parada repentina, ou
+                        seja, desligou</b>
                 </div>
                 <center>
                     <div class="cuidado" id="cuidado"><img src="../resources/img/mensagem-de-erro.png" alt=""></div>
-                    <img id="totem" src="../resources/img/phone.png" alt=""></center>
+                    <img id="totem" src="../resources/img/phone.png" alt="">
+                </center>
             </div>
 
             <div class="em" id="em4" style="display: none;">
@@ -50,7 +55,8 @@
             <div class="em" id="em5" style="display: none;">
                 <img src="../resources/img/cyborg.png" alt="">
                 <div class="txt">
-                    <b>E nossa plataforma é total programada para receber esse evento e disponibilizar o relatório na sua Dashboard</b>
+                    <b>E nossa plataforma é total programada para receber esse evento e disponibilizar o relatório na
+                        sua Dashboard</b>
                 </div>
             </div>
 
@@ -73,7 +79,9 @@
                 <div class="fec" onclick="fecharTutorial()">Fechar</div>
                 <div class="px" onclick="proximo4()">Próximo</div>
             </div>
-            <center><p id="pergunta" style="display: none;">Isso foi util?</p></center>
+            <center>
+                <p id="pergunta" style="display: none;">Isso foi util?</p>
+            </center>
             <div class="escolhas" id="escolhaFive" style="display: none;">
                 <div class="fec" onclick="fecharTutorial()">Nos avalie</div>
                 <div class="px" onclick="fecharTutorial()">Sim</div>
@@ -119,7 +127,8 @@
                     <img src="../resources/img/robo.png" alt="">
                 </div>
                 <div class="msg">
-                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido
+                    seu problema clique em <b>"Contatar Suporte"</b>
                 </div>
             </div>
 
@@ -147,7 +156,8 @@
                     <img src="../resources/img/robo.png" alt="">
                 </div>
                 <div class="msg">
-                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido seu problema clique em <b>"Contatar Suporte"</b>
+                    &#128071; Segue abaixo um PDF com os principais problemas e soluções! Caso ainda não tenha resolvido
+                    seu problema clique em <b>"Contatar Suporte"</b>
                 </div>
             </div>
 
@@ -158,9 +168,11 @@
                     &#128229; <a href="../resources/pdf/EMsuporte-totem.pdf">Baixar PDF</a>
                 </div>
 
-                <a href="helpdesk.html"><div class="opcao">
-                    &#9993; Contatar suporte
-                </div></a>
+                <a href="helpdesk.html">
+                    <div class="opcao">
+                        &#9993; Contatar suporte
+                    </div>
+                </a>
 
                 <div class="opcao" onclick="voltar()">
                     &#128281; Voltar
@@ -170,25 +182,35 @@
     </div>
 
     <div class="menu_dash">
-        <div class="atv_icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png"/></div>
+        <div class="atv_icon" aria-label="Home"><img src="../resources/img/silhueta_casa.png" /></div>
         <div class="mid">
-            <a id="funcionariosIcone" href="funcionarios.html"><div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png"/></div></a>
-            <a href="graficos.html"><div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png"/></div></a>
-            <a id="calendar" href="calendario.html"><div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png"/></div></a>
-            <a href="Totens.html"><div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png"/></div></a>
+            <a id="funcionariosIcone" href="funcionarios.html">
+                <div class="icon" aria-label="Funcionários"><img src="../resources/img/silhueta_user.png" /></div>
+            </a>
+            <a href="graficos.html">
+                <div class="icon" aria-label="Gráficos"><img src="../resources/img/silhueta_grafico.png" /></div>
+            </a>
+            <a id="calendar" href="calendario.html">
+                <div class="icon" aria-label="Calendário"><img src="../resources/img/silhueta_calendario.png" /></div>
+            </a>
+            <a href="Totens.html">
+                <div class="icon" aria-label="Totens"><img src="../resources/img/silhueta_totem.png" /></div>
+            </a>
         </div>
         <div class="bot">
-            <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img src="../resources/img/silhueta_apoio.png"/></div>
-        <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" /></div>
-            
+            <div class="icon" aria-label="Suporte" onclick="abrirBot()"><img
+                    src="../resources/img/silhueta_apoio.png" /></div>
+            <div class="icon_sair" aria-label="Sair" onclick="sair()"><img src="../resources/img/silhueta_sair.png" />
+            </div>
+
         </div>
     </div>
 
     <div class="main">
-        <div class="header">
+        <div class="header" id="testeMain">
             <div>
                 <div class="title">Olá, usuário.</div>
-            <div class="subtitle" id="cargoF">Você está logado como </div>
+                <div class="subtitle" id="cargoF">Você está logado como </div>
             </div>
 
             <div class="hint_text" onclick="abrirTutorial()">Como pegamos os incidentes?</div>
@@ -196,94 +218,68 @@
 
         <div class="cards">
             <div class="card_maior_int">
-                <div class="info"><div class="circleRed"></div><div class="emergencia">Emergência</div> <div class="detalhes" aria-label="Caso esteja com 2 ou mais incidentes ou totens inoperantes"><img src="../resources/img/interrogacao.png"></div></div>
-                <div class="info"><div class="circleYellow"></div><div class="atencao">Atenção</div><div class="detalhes" aria-label="Caso esteja com até 2 incidentes ou totens inoperantes"><img src="../resources/img/interrogacao.png" alt=""></div></div>
-                <div class="info"><div class="circleGreen"></div><div class="normal">Normal</div> <div class="detalhes" aria-label="Caso esteja sem incidentes e sem totens inoperantes"><img src="../resources/img/interrogacao.png" alt=""></div></div>
+                <div class="info">
+                    <div class="circleRed"></div>
+                    <div class="emergencia">Emergência</div>
+                    <div class="detalhes" aria-label="Caso esteja com 2 ou mais incidentes ou totens inoperantes"><img
+                            src="../resources/img/interrogacao.png"></div>
+                </div>
+                <div class="info">
+                    <div class="circleYellow"></div>
+                    <div class="atencao">Atenção</div>
+                    <div class="detalhes" aria-label="Caso esteja com até 2 incidentes ou totens inoperantes"><img
+                            src="../resources/img/interrogacao.png" alt=""></div>
+                </div>
+                <div class="info">
+                    <div class="circleGreen"></div>
+                    <div class="normal">Normal</div>
+                    <div class="detalhes" aria-label="Caso esteja sem incidentes e sem totens inoperantes"><img
+                            src="../resources/img/interrogacao.png" alt=""></div>
+                </div>
             </div>
             <div class="card">
                 <div class="header_card">
-                    <div class="line_red"></div>
+                    <div id="line" class="line_red"></div>
                     <div class="title_card">INCIDENTES</div>
                     <div class="titleTwo_card">| HOJE</div>
-                    <img src="../resources/img/seta.png"/>
+                    <img src="../resources/img/seta.png" />
                 </div>
 
-                <div class="number">3</div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
+                <div class="number" id="totalIncidentesHoje"></div>
+                <a href="graficos.html">
+                    <div class="detalhe">mais detalhes...</div>
+                </a>
             </div>
             <div class="card_maior">
                 <div class="header_card">
-                    <div class="line_yellow"></div>
+                    <div id="lineIno" class="line_yellow"></div>
                     <div class="title_card">TOTENS INOPERANTES</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
                 <div class="number" id="totalTotensInoperantes"></div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
+                <a href="graficos.html">
+                    <div class="detalhe">mais detalhes...</div>
+                </a>
             </div>
             <div class="card">
                 <div class="header_card">
-                    <div class="line_yellow"></div>
+                    <div id="lineAtv" class="line_yellow"></div>
                     <div class="title_card">TOTENS ATIVOS</div>
                     <div class="titleTwo_card">| HOJE</div>
                 </div>
                 <div class="number" id="totalTotensOperantes"></div>
-                <a href="graficos.html"><div class="detalhe">mais detalhes...</div></a>
+                <a href="graficos.html">
+                    <div class="detalhe">mais detalhes...</div>
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="incidentes">
-        <div class="data">01/10/2022</div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
-        </div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
-        </div>
-
-        <div class="incidente">
-            <div class="header_inci">
-                <div class="title_inci">INCIDENTE 1</div>
-                <div class="line_inci"></div>
-            </div>
-
-            <div class="infos">
-                <div class="row_title">COD:</div>
-                <div class="row">08461200</div>
-                <div class="row_title">HORÁRIO:</div>
-                <div class="row">16:00</div>
-                <div class="row_title">RELATÓRIO:</div>
-                <div class="row">Carga muito alta na CPU</div>
-            </div>
-        </div>
+    <div class="incidentes" id="incidentesListados">
+        <div class="data">Incidentes ativos</div>
     </div>
 </body>
+
 </html>
 
 <script src="../resources/js/bot.js"></script>
@@ -292,8 +288,9 @@
     cargoF.innerHTML += sessionStorage.CARGO;
     getTotensInoperantes();
     getTotensOperantes();
+    getIncidentesAtivos();
 
-    function getTotensInoperantes(){
+    function getTotensInoperantes() {
         console.log("Vamos listar os totens inoperantes...");
         fetch(`/totens/getTotensInoperantes`, { cache: "no-store" })
             .then(function (response) {
@@ -304,6 +301,16 @@
                         for (i = 0; i < resposta.length; i++) {
                             var registro = resposta[i];
                             totalTotensInoperantes.innerHTML = registro.total;
+                            if(registro.total >= 2){
+                                lineIno.style.backgroundColor = '#FF0404';
+                                lineAtv.style.backgroundColor = '#FF0404';
+                            }else if(registro.total >0 && resposta.length <2){
+                                lineIno.style.backgroundColor = '#FFDA47';
+                                lineAtv.style.backgroundColor = '#FFDA47';
+                            }else{
+                                lineIno.style.backgroundColor = '#5EFF47';
+                                lineAtv.style.backgroundColor = '#5EFF47';
+                            }
                         }
                     });
                 } else {
@@ -317,7 +324,7 @@
             });
     }
 
-    function getTotensOperantes(){
+    function getTotensOperantes() {
         console.log("Vamos listar os totens inoperantes...");
         fetch(`/totens/getTotensOperantes`, { cache: "no-store" })
             .then(function (response) {
@@ -341,47 +348,93 @@
             });
     }
 
-    function sair(){
-         sessionStorage.clear();
-         window.location.replace('../index.html');
-     }
+    function getIncidentesAtivos() {
+        console.log("Vamos listar os incidentes...");
+        fetch(`/totens/getIncidentesAtivos`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-     function abrirTutorial(){
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            if(resposta.length >= 2){
+                                line.style.backgroundColor = '#FF0404';
+                            }else if(resposta.length >0 && resposta.length <2){
+                                line.style.backgroundColor = '#FFDA47';
+                            }else{
+                                line.style.backgroundColor = '#5EFF47';
+                            }
+                            totalIncidentesHoje.innerHTML = resposta.length;
+                            incidentesListados.innerHTML += `
+                            <div class="incidente">
+            <div class="header_inci">
+                <div class="title_inci">INCIDENTE ${registro.idIncidente}</div>
+                <div class="line_inci"></div>
+            </div>
+
+            <div class="infos">
+                <div class="row_title">DIA E HORA DO INCIDENTE:</div>
+                <div class="row">${registro.dataIncidente}</div>
+                <div class="row_title">RELATÓRIO:</div>
+                <div class="row">${registro.detalhe}</div>
+            </div>
+        </div>
+                            `;
+                        }
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+    function sair() {
+        sessionStorage.clear();
+        window.location.replace('../index.html');
+    }
+
+    function abrirTutorial() {
         tutorialIncidente.style.display = "flex";
-     }
+    }
 
-     function fecharTutorial(){
+    function fecharTutorial() {
         tutorialIncidente.style.display = "none";
-     }
+    }
 
-     function proximo(){
+    function proximo() {
         em1.style.display = "none";
         em2.style.display = "block";
         escolha1.style.display = "none";
         escolhaTwo.style.display = "flex";
-     }
+    }
 
-     function proximo2(){
+    function proximo2() {
         em2.style.display = "none";
         em3.style.display = "block";
         escolhaTwo.style.display = "none";
         escolhaThree.style.display = "flex";
-     }
+    }
 
-     function proximo3(){
+    function proximo3() {
         em3.style.display = "none";
         em4.style.display = "block";
         escolhaThree.style.display = "none";
         escolhaFour.style.display = "flex";
-     }
+    }
 
-     function proximo4(){
+    function proximo4() {
         em4.style.display = "none";
         em5.style.display = "flex";
         escolhaFour.style.display = "none";
         escolhaFive.style.display = "flex";
         pergunta.style.display = "block";
-     }
- </script>
+    }
+</script>
 
 <script src="../resources/js/controleAcesso.js"></script>

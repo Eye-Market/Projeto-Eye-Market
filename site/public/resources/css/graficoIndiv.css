@@ -93,6 +93,15 @@
     padding: 20px;
     border-radius: 20px;
     width: 430px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.temperatura p{
+    color: green;
+    font-size: 20px;
 }
 
 .memoria{

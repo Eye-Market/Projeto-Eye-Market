@@ -2,37 +2,28 @@
 
 // ESSE É O GRÁFICO DE LINHA PRODUTIVIDADE
 
-const labelsProdutividade =
-[
-    'Segunda-feira',
-    'Terça-feira',
-    'Quarta-feira',
-    'Quinta-feira',
-    'Sexta-feira',
-    'Sábado',
-    'Domingo',
-];
 
-const dataProdutividade = {
-    labels: labelsProdutividade,
-    datasets: [{
-      label: 'My First Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      borderColor: '#522952',
-      tension: 0.1
-    }]
-  };
+const graficoProdutividades = new Chart(graficoProdutividade, {
+  data: {
+      datasets: [{
+        type: 'line',
+        label: 'Início/Conclusão de solução',
+        data: [1,0,1.5,1.5,0,1,0],
+        borderColor: '#6D72F9',
+        backgroundColor: '#6D72F9',
+    }, 
+        {
+          type: 'bar',
+          label: 'Incidentes registrados',
+          data: [1, 0, 2, 1, 0, 1, 0],
+          backgroundColor: '#FFCECE',
+          borderColor: '#FC5656',
+          borderWidth: 2
+      }],
+      labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
+  }
+});
 
-const configProdutividade = {
-    type: 'line',
-    data: dataProdutividade,
-  };
-
-const graficoProdutividade = new Chart(
-    document.getElementById('graficoProdutividade'),
-    configProdutividade
-);
 
 //
 
@@ -46,8 +37,7 @@ const graficoProdutividade = new Chart(
       'Máquinas sem riscos'
     ],
     datasets: [{
-      label: 'My First Dataset',
-      data: [300, 50, 100],
+      data: [1, 1, 2],
       backgroundColor: [
         '#FF0404',
         '#FFDA47',
