@@ -104,3 +104,23 @@ body{
     border-radius: 10px;
     margin-top: 60px;
 }
+
+.diass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.diass input{
+    width: 30px;
+    font-size: 20px;
+    height: 20px;
+    border: none;
+    margin-left: 20px;
+    background: none;
+}
+
+.diass input:focus{
+    outline: none;
+}

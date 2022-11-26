@@ -8,6 +8,24 @@ function buscarUltimasMedidas(idMaquina, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
+function buscarUltimasMedidasTodos(limite_linhas) {
+
+    instrucaoSql = `select * from DadosTotem order by idDadosTotem desc`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasTodosComRisco(limite_linhas) {
+
+    instrucaoSql = `select (select count(idTotem) from Totem where situacao = 'normal') as 'normal',
+    (select count(idTotem) from Totem where situacao = 'atencao') as 'atencao',
+    (select count(idTotem) from Totem where situacao = 'critico') as 'critico';`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarMedidasEmTempoReal(idMaquina) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top 1
@@ -37,7 +55,56 @@ function buscarMedidasEmTempoReal(idMaquina) {
     return database.executar(instrucaoSql);
 }
 
+
+function buscarMedidasEmTempoRealTodos() {
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select 
+        usoMemoriaDisponivel, 
+        usoMemoria,
+        tempoAtividade,
+        qtdProcessos,
+        fkTotem
+                        from DadosTotem
+                    order by IDDadosTotem desc`;
+
+    }else if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `select 
+        usoMemoriaDisponivel, 
+        usoMemoria,
+        tempoAtividade,
+        qtdProcessos,
+        fkTotem
+                        from DadosTotem
+                    order by IDDadosTotem desc`;
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealTodosComRisco() {
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select (select count(idTotem) from Totem where situacao = 'normal') as 'normal',
+        (select count(idTotem) from Totem where situacao = 'atencao') as 'atencao',
+        (select count(idTotem) from Totem where situacao = 'critico') as 'critico';`;
+
+    }else if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `select (select count(idTotem) from Totem where situacao = 'normal') as 'normal',
+        (select count(idTotem) from Totem where situacao = 'atencao') as 'atencao',
+        (select count(idTotem) from Totem where situacao = 'critico') as 'critico';`;
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarUltimasMedidasTodos,
+    buscarMedidasEmTempoRealTodos,
+    buscarUltimasMedidasTodosComRisco,
+    buscarMedidasEmTempoRealTodosComRisco
 }

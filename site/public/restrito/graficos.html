@@ -142,18 +142,27 @@
             </div>
 
             <div class="grafico_produtividade">
-                <div class="tituloGrafico"><b>Produtividade das máquinas |</b> <div class="week">Nessa semana</div></div>
-                <canvas id="graficoProdutividade"></canvas>
+                <div class="tituloGrafico"><b>Tempo de atividade |</b>
+                    <div class="diass">
+                        Os totens deverão ser desligados a cada
+                        <input type="number" id="dias" placeholder="3" onchange="inserirDias()" min="1">
+                        dias
+                        <img id="imgg" src="../resources/img/carregando.gif" alt="" width="30px" style="margin-left: 10px; display: none;">
+                    </div>
+                </div>
+                <canvas id="myTemp"></canvas>
             </div>
         </div>
         <div class="right_side">
             <div class="titulo">
                 <b>Riscos de incidentes |</b> Hoje
                 <div class="graficoRisco">
-                    <canvas id="graficoRisco"></canvas>
+                    <canvas id="myRisc"></canvas>
                 </div>
             </div>
-            <a href="Totens.html"><div class="btn">Ver máquinas</div></a>
+            <a href="Totens.html">
+                <div class="btn">Ver máquinas</div>
+            </a>
         </div>
     </div>
 </body>
@@ -167,6 +176,326 @@
 <script src="../resources/js/graficos.js"></script>
 
 <script>
+    const date = new Date();
+    const today = date.getDate();
+    const currentMonth = date.getMonth() + 1;
+    const currentDay = date.getDate();
+    let proximaAtualizacao;
+    let proximaAtualizacaoRisco;
+    const listaLabel = [];
+    const cores = [];
+    var dadosData = [];
+    var dia = 3;
+    const bordas = [];
+    listarTotens('todos');
+    obterDadosGrafico();
+    obterDadosGraficoComRisco();
+
+    function obterDadosGrafico() {
+        // alterarTitulo(idAquario)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimastodos`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta);
+                    var registro = resposta[0];
+                    console.log(registro.tempoAtividade);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterDadosGraficoComRisco() {
+        // alterarTitulo(idAquario)
+
+        if (proximaAtualizacaoRisco != undefined) {
+            clearTimeout(proximaAtualizacaoRisco);
+        }
+
+        fetch(`/medidas/ultimastodosComRisco`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Risco: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoComRisco(resposta);
+                    var registro = resposta[0];
+                    console.log("OXE");
+                    console.log(registro.critico);
+                    // console.log(registro.tempoAtividade);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+
+    function plotarGrafico(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        const data = {
+            labels: listaLabel,
+            datasets: [{
+                label: '',
+                data: [],
+                backgroundColor: cores,
+                borderColor: bordas,
+                borderWidth: 2
+            }]
+        }; 13
+
+        // Criando estrutura para plotar gráfico - dados
+        const configThree = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+
+
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            console.log("FEIJAO " + registro.usoMemoriaDisponivel);
+            console.log("FEIJAO " + registro.usoMemoria);
+            console.log("OIIII??" + registro.fkTotem);
+            data.datasets[0].data[registro.fkTotem - 1] = registro.tempoAtividade;
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log('Dados:')
+        console.log(data.datasets);
+        console.log('----------------------------------------------')
+
+        // Adicionando gráfico criado em div na tela
+        const myTemp = new Chart(
+            document.getElementById('myTemp'),
+            configThree
+        );
+
+        setTimeout(() => atualizarGrafico(data, myTemp), 2000);
+    }
+
+    function plotarGraficoComRisco(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        const dataComRisco = {
+            labels: ['Máquinas com risco','Máquinas em atenção','Máquinas sem riscos'],
+            datasets: [{
+                label: '',
+                data: dadosData,
+                backgroundColor: ['#FF0404','#FFDA47','#5EFF47'],
+                hoverOffset: 4
+            }]
+        };
+        
+
+        // Criando estrutura para plotar gráfico - dados
+        const configFour = {
+            type: 'pie',
+            data: dataComRisco
+        };
+
+
+
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            console.log('entrou aqui mor');
+            dadosData.push(registro.critico,registro.atencao,registro.normal);
+            console.log('AQUI OOOOOOOOOH');
+            console.log(registro.critico);
+            console.log(dadosData);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log('Dados:')
+        console.log(dataComRisco.datasets);
+        console.log('----------------------------------------------')
+
+        // Adicionando gráfico criado em div na tela
+        const myRisc = new Chart(
+            document.getElementById('myRisc'),
+            configFour
+        );
+
+        setTimeout(() => atualizarGraficoComRisco(dataComRisco, myRisc), 5000);
+    }
+
+
+    function listarTotens(detalhe) {
+        console.log("Vamos listar os totens...");
+        fetch(`/totens/listarTotens/${detalhe}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.status == 200) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        // cards.innerHTML = "";
+
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            listaLabel.push('Totem ID : '+registro.idTotem);
+                            cores.push('#b0b0ff');
+                            bordas.push('#8787c4');
+                        }
+                        // plotarGrafico(resposta, idAquario);
+                    });
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                }
+            })
+            .catch(function (error) {
+                console.error(
+                    `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+            });
+    }
+
+
+    function atualizarGrafico(data, myTemp) {
+
+        fetch(`/medidas/tempo-realtodos`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos ATUALIZADOS: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(data);
+
+                    // document.getElementById("avisoCaptura").innerHTML = ""
+
+                    if (novoRegistro[0].momento_grafico == data.labels[data.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        document.getElementById("avisoCaptura").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].momento_grafico)
+                        console.log("Horário do último dado capturado:")
+                        console.log(data.labels[data.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        for (i = 0; i < novoRegistro.length; i++) {
+                            console.log('DIAS:' + dia);
+                            var segundosCritico = dia * 86400;
+                            var segundosAtencao = (dia * 86400)-43.200;
+                            var registroo = novoRegistro[i];
+                            if (registroo.tempoAtividade > segundosCritico) {
+                                cores[i] = '#ff8f8f';
+                                bordas[i] = '#ff5454';
+                            } else if (registroo.tempoAtividade > segundosAtencao) {
+                                cores[i] = '#fbff8f';
+                                bordas[i] = '#cbcf63';
+                                // 259200
+                            } else {
+                                cores[i] = '#b0b0ff';
+                                bordas[i] = '#8787c4';
+                            }
+                            imgg.style.display = 'none';
+                        }
+                        data.datasets[0].data[novoRegistro[0].fkTotem - 1] = novoRegistro[0].tempoAtividade;
+                        console.log(novoRegistro[1].tempoAtividade);
+                        // if(novoRegistro[0].tempoAtividade > 2000){
+                        //     console.log('oi');
+                        //     data.datasets[0].backgroundColor[novoRegistro[0].fkTotem-1] = 'red';
+                        // }
+                        console.log("ENTROU AQUI");
+                        myTemp.update();
+                    }
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(data, myTemp), 5000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(data, myTemp), 5000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+
+function atualizarGraficoComRisco(dataComRisco, myRisc) {
+
+fetch(`/medidas/tempo-realtodosComRisco`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+            console.log(`Dados recebidos ATUALIZADOS: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico risco:`);
+            console.log(dataComRisco);
+
+            // document.getElementById("avisoCaptura").innerHTML = ""
+                for (i = 0; i < novoRegistro.length; i++) {
+                    console.log("TA ENTRANDO AQUI FLOR");
+                    console.log(novoRegistro[0].critico,novoRegistro[0].atencao,novoRegistro[0].normal);
+                    dadosData = [novoRegistro[0].critico,novoRegistro[0].atencao,novoRegistro[0].normal];
+                    myRisc.update();
+                    console.log('atualizou?');
+                }
+                
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacaoRisco = setTimeout(() => atualizarGraficoComRisco(dataComRisco, myRisc), 5000);
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacaoRisco = setTimeout(() => atualizarGraficoComRisco(dataComRisco, myRisc), 5000);
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
+
+    function inserirDias() {
+        dia = document.getElementById('dias').value;
+        console.log(dia);
+        imgg.style.display = 'block';
+    }
+
+
     function sair() {
         sessionStorage.clear();
         window.location.replace('../index.html');
