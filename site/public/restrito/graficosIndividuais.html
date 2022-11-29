@@ -165,7 +165,7 @@
             <div class="graficos">
                 <div class="temperatura">
                     <div class="title">Situação da memória RAM</div>
-                    <p>OK</p>
+                    <p id="situacao">OK</p>
                 </div>
 
                 <div class="memoria">
@@ -271,6 +271,17 @@
             // labels.push(registro.momento_grafico);
             console.log("FEIJAO "+ registro.usoMemoriaDisponivel);
             console.log("FEIJAO "+ registro.usoMemoria);
+            if(registro.usoMemoria <= 1461280){
+                situacao.innerHTML = 'Ok';
+                situacao.style.color = 'green';
+            }else if(registro.usoMemoria<=1753536){
+                situacao.innerHTML = 'Atenção';
+                situacao.style.color = 'yellow';
+            }else{
+                situacao.innerHTML = 'Crítico';
+                situacao.style.color = 'red';
+            }
+            
             // uso.innerHTML = `Aqui to no primeiro: disponivel: ${registro.usoMemoriaDisponivel} uso: ${registro.usoMemoria}`;
             dados.datasets[0].data.push = registro.usoMemoriaDisponivel,registro.usoMemoria;
         }

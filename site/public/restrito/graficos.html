@@ -250,7 +250,7 @@
         console.log('iniciando plotagem do gráfico...');
 
         const data = {
-            labels: listaLabel,
+            labels: ['Totem ID : 12','Totem ID : 113'],
             datasets: [{
                 label: '',
                 data: [],
@@ -286,7 +286,8 @@
             console.log("FEIJAO " + registro.usoMemoriaDisponivel);
             console.log("FEIJAO " + registro.usoMemoria);
             console.log("OIIII??" + registro.fkTotem);
-            data.datasets[0].data[registro.fkTotem - 1] = registro.tempoAtividade;
+            data.datasets[0].data.shift();
+            data.datasets[0].data.push(registro.tempoAtividade,registro.tempoAtividade);
         }
 
         console.log('----------------------------------------------')
@@ -428,7 +429,9 @@
                             }
                             imgg.style.display = 'none';
                         }
-                        data.datasets[0].data[novoRegistro[0].fkTotem - 1] = novoRegistro[0].tempoAtividade;
+                        data.datasets[0].data[0] = novoRegistro[0].tempoAtividade;
+                        // data.datasets[0].data[113] = 767698;
+                        //her
                         console.log(novoRegistro[1].tempoAtividade);
                         // if(novoRegistro[0].tempoAtividade > 2000){
                         //     console.log('oi');
