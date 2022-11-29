@@ -271,10 +271,12 @@
             // labels.push(registro.momento_grafico);
             console.log("FEIJAO "+ registro.usoMemoriaDisponivel);
             console.log("FEIJAO "+ registro.usoMemoria);
-            if(registro.usoMemoria <= 1461280){
+            var bom = (registro.usoMemoriaDisponivel*70)/100;
+            var atention = (registro.usoMemoriaDisponivel*90)/100;
+            if(registro.usoMemoria <= bom){
                 situacao.innerHTML = 'Ok';
                 situacao.style.color = 'green';
-            }else if(registro.usoMemoria<=1753536){
+            }else if(registro.usoMemoria<= atention){
                 situacao.innerHTML = 'Atenção';
                 situacao.style.color = 'yellow';
             }else{
